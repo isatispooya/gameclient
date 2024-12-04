@@ -1,25 +1,25 @@
-import { useState, useEffect } from 'react';
-import { awardsData } from './awardsData';
+import { useState, useEffect } from "react";
+import { awardsData } from "./awardsData";
 
 const Awards = () => {
   const [openAward, setOpenAward] = useState<number | null>(null);
-  const [claimedAwards, setClaimedAwards] = useState<number[]>([]); 
-  const [showCelebration, setShowCelebration] = useState(false); 
-  const [isProcessing, setIsProcessing] = useState(false); 
-  const [isAnimationComplete, setIsAnimationComplete] = useState(false); 
-  const [showPopup, setShowPopup] = useState(false); 
+  const [claimedAwards, setClaimedAwards] = useState<number[]>([]);
+  const [showCelebration, setShowCelebration] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [isAnimationComplete, setIsAnimationComplete] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   const createParticle = () => {
     const colors = ['#FF1493', '#FFD700', '#00BFFF', '#32CD32', '#FF4500', '#9400D3'];
     const particle = document.createElement('div');
-    particle.style.position = 'fixed';
-    particle.style.width = '4px';
-    particle.style.height = '12px';
+    particle.style.position = 'absolute';
+    particle.style.width = '8px';
+    particle.style.height = '16px';
     particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
     particle.style.left = Math.random() * 100 + '%';
-    particle.style.top = '-12px';
+    particle.style.top = '-16px';
     particle.style.transform = `rotate(${Math.random() * 360}deg)`;
-    particle.style.opacity = '0.8';
+    particle.style.opacity = '0.9';
     particle.style.pointerEvents = 'none';
     particle.style.animation = `confettiFall ${Math.random() * 2 + 1}s ease-in-out`;
     document.querySelector('.awards-container')?.appendChild(particle);
@@ -31,20 +31,27 @@ const Awards = () => {
 
   const createBoxConfetti = (boxElement: Element) => {
     const rect = boxElement.getBoundingClientRect();
-    const colors = ['#FF1493', '#FFD700', '#00BFFF', '#32CD32', '#FF4500', '#9400D3'];
-    
+    const colors = [
+      "#FF1493",
+      "#FFD700",
+      "#00BFFF",
+      "#32CD32",
+      "#FF4500",
+      "#9400D3",
+    ];
+
     for (let i = 0; i < 30; i++) {
       const particle = document.createElement('div');
-      particle.style.position = 'fixed';
-      particle.style.width = '4px';
-      particle.style.height = '10px';
+      particle.style.position = 'absolute';
+      particle.style.width = '6px';
+      particle.style.height = '12px';
       particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      particle.style.left = `${rect.left}px`;
-      particle.style.top = `${rect.top}px`;
+      particle.style.left = `${rect.left + rect.width/2}px`;
+      particle.style.top = `${rect.top + rect.height/2}px`;
       particle.style.transform = `rotate(${Math.random() * 360}deg)`;
-      particle.style.opacity = '0.8';
+      particle.style.opacity = '0.9';
       particle.style.pointerEvents = 'none';
-      particle.style.animation = `boxConfetti ${Math.random() * 1.5 + 1}s ease-out`;
+      particle.style.animation = `boxConfetti ${Math.random() * 1.5 + 0.5}s ease-out`;
       document.body.appendChild(particle);
 
       setTimeout(() => {
@@ -173,7 +180,7 @@ const Awards = () => {
             }
             100% {
               transform: translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px)
-                        rotate(${Math.random() * 720}deg) scale(0.3);
+                        rotate(${Math.random() * 720}deg) scale(0.5);
               opacity: 0;
             }
           }
@@ -219,7 +226,7 @@ const Awards = () => {
           <div key={award.id} className="w-full">
             <div
               data-award-id={award.id}
-              className={`rounded-xl p-4 transition-all duration-400 bg-gradient-to-br
+              className={`rounded-3xl p-8 transition-all duration-500 bg-gradient-to-br
                 ${claimedAwards.includes(award.id) 
                   ? 'from-[#00BFFF] to-[#1E90FF] opacity-90' 
                   : 'from-[#0d3b66] via-[#084c8d] to-[#12527c] hover:from-[#0b2f4a] hover:via-[#07395e] hover:to-[#0a4971]'
@@ -237,15 +244,15 @@ const Awards = () => {
                   </span>
                 </div>
                 <div className="flex flex-col flex-1">
-                  <h3 className="text-base font-medium text-white">{award.title}</h3>
-                  <p className="text-2xs text-white mt-0.5">{award.description}</p>
+                  <h3 className="text-xl font-bold text-gray-800">{award.title}</h3>
+                  <p className="text-sm text-gray-600 mt-2">{award.description}</p>
                 </div>
               </div>
             </div>
           </div>
         ))}
       </div>
-      
+
       {showPopup && (
         <div className="fixed left-1/2 bottom-[4vh] transform -translate-x-1/2 
           bg-gradient-to-r from-[#00BFFF] to-[#1E90FF] rounded p-2
