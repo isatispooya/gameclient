@@ -1,5 +1,3 @@
-
-
 import api from "../../../api/api";
 
 const otpSejam = async (uniqueIdentifier: string) => {

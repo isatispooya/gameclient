@@ -11,6 +11,7 @@ const SejamPage = lazy(() => import("./mudole/sejam/pages/sejam.page.tsx"));
 const RankingPage = lazy(
   () => import("./mudole/ranking/pages/ranking.page.tsx")
 );
+
 const FourChoiceQuestionsPage = lazy(
   () => import("./mudole/4_choice_questions/page/4_choice_questions.page.tsx")
 );
