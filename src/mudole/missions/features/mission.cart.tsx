@@ -16,8 +16,6 @@ const MissionCart = ({
   const [isExpanded, setIsExpanded] = useState(false);
   const navigate = useNavigate();
 
-
-
   return (
     <div
       className="flex flex-col gap-2 p-4 rounded-lg bg-white shadow-lg cursor-pointer transition-all duration-300"

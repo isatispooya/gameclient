@@ -1,10 +1,11 @@
 import { MissionType } from "../types";
 import MissionCart from "./mission.cart";
 
+
 const MissionList = () => {
   const mission_list: MissionType[] = [
     {
-      image: "puzzle.svg",
+      image: "./وکتور-لوگو-آرم-سجام-1.png",
       title: "سجام",
       isCompleted: false,
       score: 50,

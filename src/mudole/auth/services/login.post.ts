@@ -1,8 +1,7 @@
-import { server } from "../../../api/server";
-import axios from "axios";
+import api from "../../../api/api";
 
 const loginPost = async (mobile: string, code: string, name: string) => {
-  const response = await axios.post(`${server}/login/`, {
+  const response = await api.post(`/login/`, {
     mobile,
     code,
     name,

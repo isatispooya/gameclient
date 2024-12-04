@@ -1,8 +1,9 @@
-import axios from "axios";
-import { server } from "../../../api/server";
+
+
+import api from "../../../api/api";
 
 const otpSejam = async (uniqueIdentifier: string) => {
-  const response = await axios.post(`${server}/otp-sejam/`, {
+  const response = await api.post(`/otp-sejam/`, {
     uniqueIdentifier,
   });
   return response.data;
