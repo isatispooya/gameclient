@@ -31,7 +31,7 @@ const Recaptcha = ({ onVerify }: RecaptchaProps) => {
   return (
     <div className="w-full max-w-md mx-auto p-4 bg-white rounded-lg shadow-md">
       <div className="text-center mb-4">
-        <h3 className="text-lg font-medium text-gray-700">تایید امنیتی</h3>
+        <h3 className="text-lg font-medium text-gray-700">شروع بازی</h3>
         <p className="text-sm text-gray-500">مربع را به محل مناسب بکشید</p>
       </div>
       
@@ -52,8 +52,11 @@ const Recaptcha = ({ onVerify }: RecaptchaProps) => {
       </div>
 
       <input 
-        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer 
-          dark:bg-gray-700 accent-blue-500 hover:accent-blue-600"
+        className="w-full h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer 
+          dark:bg-gray-700 accent-blue-500 hover:accent-blue-600 
+          hover:bg-gray-300 dark:hover:bg-gray-600
+          focus:outline-none focus:ring-2 focus:ring-blue-500
+          transition-all duration-200"
         value={position}
         onChange={(e) => setPosition(parseInt(e.target.value))}
         onMouseDown={handleDragStart}
