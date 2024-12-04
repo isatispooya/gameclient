@@ -24,7 +24,10 @@ const Autotyping = lazy(
 );
 const LivePage = lazy(() => import("./mudole/livestream/pages/live.page.tsx"));
 const QaPage = lazy(() => import("./mudole/Q&A/pages/qa.page.tsx"));
-
+const BrokerPage = lazy(() => import("./mudole/brokers/pages/broker.page.tsx"));
+const RecaptchaPage = lazy(
+  () => import("./mudole/reCaptcha/page/recaptcha.page.tsx")
+);
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -88,6 +91,16 @@ export const router = createBrowserRouter([
       {
         path: "qa",
         element: <QaPage />,
+        errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
+      },
+      {
+        path: "broker",
+        element: <BrokerPage />,
+        errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
+      },
+      {
+        path: "recaptcha",
+        element: <RecaptchaPage />,
         errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
       },
     ],

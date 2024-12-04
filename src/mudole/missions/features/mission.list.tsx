@@ -1,6 +1,6 @@
+import { useMissions } from "../hooks";
 import { MissionType } from "../types";
 import MissionCart from "./mission.cart";
-
 
 const MissionList = () => {
   const mission_list: MissionType[] = [
@@ -24,23 +24,26 @@ const MissionList = () => {
     },
     {
       image: "puzzle.svg",
-      title: "پازل",
+      title: "کارگزاری",
       isCompleted: false,
       score: 0,
       totalScore: 100,
       description: "توضیحات",
-      route: "/puzzle",
+      route: "/broker",
     },
     {
       image: "puzzle.svg",
-      title: "پازل",
+      title: "سوالات",
       isCompleted: false,
       score: 0,
       totalScore: 100,
       description: "توضیحات",
-      route: "/puzzle",
+      route: "/qa",
     },
   ];
+  const { data } = useMissions();
+
+  console.log(data);
   return (
     <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
       {mission_list.map((mission, index) => (

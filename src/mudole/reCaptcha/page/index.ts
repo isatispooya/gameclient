@@ -1,0 +1,1 @@
+export { default as RecaptchaPage } from "./recaptcha.page";
