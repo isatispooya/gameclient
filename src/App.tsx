@@ -5,9 +5,12 @@ import 'tailwindcss/tailwind.css'
 
 function App() {
   return (
+
+
     <MobileLayout>
       <Outlet />
     </MobileLayout>
+
   );
 }
 

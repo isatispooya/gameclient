@@ -86,12 +86,21 @@ const Awards = () => {
 
   const handleAwardClick = (id: number) => {
     if (isProcessing || claimedAwards.includes(id) || isAnimationComplete) return;
-    
+  
     setIsProcessing(true);
     setOpenAward(id);
     setClaimedAwards([...claimedAwards, id]);
     setShowCelebration(true);
+  
+    const awardElement = document.querySelector(`[data-award-id="${id}"]`);
+    if (awardElement) {
+      awardElement.classList.add("clicked-award");
+      setTimeout(() => {
+        awardElement.classList.remove("clicked-award");
+      }, 2000); 
+    }
   };
+  
 
   return (
     <div className="awards-container relative overflow-hidden h-full">
@@ -109,7 +118,7 @@ const Awards = () => {
           }
 
           .box {
-            background: linear-gradient(135deg, #f09, #ff6);
+            background: linear-gradient(135deg, #00BFFF, #1E90FF);
             border-radius: 12px;
             padding: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -124,7 +133,7 @@ const Awards = () => {
           }
 
           .popup {
-            background: linear-gradient(45deg, #32cd32, #00bfff);
+            background: linear-gradient(45deg, #00BFFF, #1E90FF);
             border-radius: 8px;
             padding: 12px;
             animation: fadeInUp 0.6s ease forwards;
@@ -133,9 +142,8 @@ const Awards = () => {
           }
 
           .award-title {
-            color: #ff6347;
-            font-weight: 500;
-            font-size: 1.25rem;
+            color: #00BFFF;
+            font-size: 1.5rem;
             text-align: center;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
           }
@@ -198,6 +206,11 @@ const Awards = () => {
           .hover-effect:hover {
             transform: rotateZ(2deg) scale(1.02);
           }
+
+          .clicked-award {
+            background: linear-gradient(to right, #00BFFF, #1E90FF) !important;
+            transition: background 0.3s ease;
+          }
         `}
       </style>
 
@@ -208,18 +221,20 @@ const Awards = () => {
               data-award-id={award.id}
               className={`rounded-xl p-4 transition-all duration-400 bg-gradient-to-br
                 ${claimedAwards.includes(award.id) 
-                  ? 'from-gray-100 to-gray-200 opacity-50' 
+                  ? 'from-[#00BFFF] to-[#1E90FF] opacity-90' 
                   : 'from-[#0d3b66] via-[#084c8d] to-[#12527c] hover:from-[#0b2f4a] hover:via-[#07395e] hover:to-[#0a4971]'
                 }
                 ${(claimedAwards.includes(award.id) || isProcessing || isAnimationComplete) 
                   ? 'cursor-not-allowed' 
-                  : 'hover:shadow-lg hover:shadow-[#0d3b66]/30 cursor-pointer hover:scale-102 hover:-translate-y-0.5'
+                  : 'hover:shadow-lg hover:shadow-[#00BFFF]/30 cursor-pointer hover:scale-102 hover:-translate-y-0.5'
                 }`}
               onClick={() => handleAwardClick(award.id)}
             >
               <div className="flex items-start text-white">
                 <div className="w-16 h-16 flex text-white items-center justify-center animate-[floatAnimation_1.5s_ease-in-out_infinite] ml-2">
-                  <span className="text-4xl filter text-gray-100 drop-shadow-sm">🎁</span>
+                  <span className="text-4xl filter text-gray-100 drop-shadow-sm">
+                    {claimedAwards.includes(award.id) ? '🎉' : '🎁'}
+                  </span>
                 </div>
                 <div className="flex flex-col flex-1">
                   <h3 className="text-base font-medium text-white">{award.title}</h3>
@@ -233,7 +248,7 @@ const Awards = () => {
       
       {showPopup && (
         <div className="fixed left-1/2 bottom-[4vh] transform -translate-x-1/2 
-          bg-gradient-to-r from-green-400 to-emerald-500 rounded p-2
+          bg-gradient-to-r from-[#00BFFF] to-[#1E90FF] rounded p-2
           shadow-sm animate-[popupAnimation_0.4s_ease] z-50 max-w-[200px]
           border border-white/15 backdrop-blur-sm"
         >

@@ -4,7 +4,6 @@ import { questions, Question } from './questions';
 const FourOptionsQuestion = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState<{[key: number]: number | null}>({});
-  const [showResult, setShowResult] = useState(false);
 
   const currentQuestion: Question = questions[currentQuestionIndex];
 
@@ -13,70 +12,67 @@ const FourOptionsQuestion = () => {
       ...prev,
       [currentQuestionIndex]: optionId
     }));
-    setShowResult(true);
   };
 
   const handleNextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(prev => prev + 1);
-      setShowResult(false);
     }
   };
 
-
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-lg">
-      <div className="mb-8">
-        <div className="flex justify-center gap-4 mb-4">
-          {questions.map((_, index) => (
-            <div
-              key={index}
-              className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                index === currentQuestionIndex
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-300 text-white'
-              }`}
+    <div className="min-h-screen w-full bg-white rounded-xl text-[#0d3b66] p-8 pt-16">
+      <div className="w-full max-w-3xl mx-auto">
+        <div className="mb-12">
+          <div className="flex justify-center gap-4 mb-8">
+            {questions.map((_, index) => (
+              <div
+                key={index}
+                className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                  index === currentQuestionIndex
+                    ? 'bg-gradient-to-br from-[#0d3b66] via-[#084c8d] to-[#12527c] text-white scale-110'
+                    : 'bg-[#0d3b66]/30'
+                }`}
+              >
+                {index + 1}
+              </div>
+            ))}
+          </div>
+          <h2 className="text-xl font-medium mt-4 text-right text-[#0d3b66]">
+            {currentQuestion.text}
+          </h2>
+        </div>
+        
+        <div className="grid grid-cols-2 gap-4">
+          {currentQuestion.options.map((option) => (
+            <button
+              key={option.id}
+              className={`aspect-square p-4 text-base text-center flex items-center justify-center text-white relative
+                hover:scale-105 hover:shadow-lg hover:shadow-[#0d3b66]/30 ${
+                selectedOptions[currentQuestionIndex] === option.id 
+                  ? 'bg-gradient-to-br from-[#1976d2] via-[#42a5f5] to-[#64b5f6] scale-105 shadow-lg shadow-[#0d3b66]/50 font-bold'
+                  : 'bg-gradient-to-br from-[#0d3b66] via-[#084c8d] to-[#12527c] hover:from-[#084c8d] hover:to-[#0d3b66]'
+                } rounded-xl transition-all duration-300 active:scale-95`}
+              onClick={() => handleOptionSelect(option.id)}
             >
-              {index + 1}
-            </div>
+              {option.text}
+            </button>
           ))}
         </div>
-        <h2 className="text-xl font-bold mt-2 text-right">{currentQuestion.text}</h2>
-      </div>
-      
-      <div className="grid grid-cols-2 gap-4 px-2">
-        {currentQuestion.options.map((option) => (
-          <button
-            key={option.id}
-            className={`aspect-square p-2 rounded-xl text-center flex items-center justify-center transition-all ${
-              !showResult 
-                ? 'hover:bg-blue-50 hover:border-blue-300'
-                : ''
-            } ${
-              selectedOptions[currentQuestionIndex] === option.id 
-                ? 'bg-blue-100 border-2 border-blue-500'
-                : 'bg-gray-50 border-2 border-gray-200'
+
+        <div className="mt-8 flex justify-between items-center">
+          <button 
+            onClick={handleNextQuestion}
+            disabled={currentQuestionIndex === questions.length - 1}
+            className={`px-6 py-2 rounded-lg text-white ${
+              currentQuestionIndex === questions.length - 1
+                ? 'bg-gray-400 cursor-not-allowed' 
+                : 'bg-[#0d3b66] hover:scale-105 hover:shadow-lg hover:shadow-blue-400/30 active:scale-95'
             }`}
-            onClick={() => handleOptionSelect(option.id)}
           >
-            {option.text}
+            سوال بعدی
           </button>
-        ))}
-      </div>
-
-      <div className="mt-6 flex justify-between items-center">
-
-        <button 
-          onClick={handleNextQuestion}
-          disabled={currentQuestionIndex === questions.length - 1}
-          className={`px-6 py-2 rounded-lg ${
-            currentQuestionIndex === questions.length - 1
-              ? 'bg-gray-300 cursor-not-allowed' 
-              : 'bg-blue-500 hover:bg-blue-600 text-white'
-          }`}
-        >
-          سوال بعدی
-        </button>
+        </div>
       </div>
     </div>
   );

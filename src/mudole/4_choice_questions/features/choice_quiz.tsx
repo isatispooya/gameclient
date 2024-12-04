@@ -95,17 +95,17 @@ const ChoiceQuiz: React.FC = () => {
   };
 
   const getButtonStyle = (index: number) => {
-    if (!quizState.showResult) return 'bg-white/30'; 
+    if (!quizState.showResult) return 'bg-gradient-to-br from-[#0d3b66] via-[#084c8d] to-[#12527c] text-white'; 
     
     if (index === currentQuestion.correctAnswer) {
-      return 'bg-green-500/50'; 
+      return 'bg-green-500 text-white'; 
     }
     
     if (index === quizState.selectedAnswer && quizState.selectedAnswer !== currentQuestion.correctAnswer) {
-      return 'bg-red-500/50';
+      return 'bg-red-500 text-white';
     }
     
-    return 'bg-white/30'; 
+    return 'bg-gradient-to-br from-[#0d3b66] via-[#084c8d] to-[#12527c] text-white'; 
   };
 
   const getTimerColor = () => {
@@ -114,7 +114,7 @@ const ChoiceQuiz: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-blue-500 rounded-xl via-blue-600 to-indigo-700 text-white p-8">
+    <div className="min-h-screen w-full bg-white rounded-xl text-[#0d3b66] p-8">
       <div className="w-full max-w-3xl mx-auto">
           <QuestionCircles 
             total={questions.length} 
@@ -122,12 +122,12 @@ const ChoiceQuiz: React.FC = () => {
           />
           
           <div className="w-full flex justify-between items-center mb-2">
-            <span className="text-lg font-bold bg-gradient-to-r from-blue-300 to-blue-400 text-transparent bg-clip-text px-4 py-1">
+            <span className="text-lg text-[#0d3b66] px-4 py-1">
               {/* امتیاز: {quizState.score} */}
             </span>
           </div>
 
-          <div className="w-full mt-4 h-4 bg-gray-200 rounded-full mb-4 border-2 border-white/50">
+          <div className="w-full mt-4 h-4 bg-gray-200 rounded-full mb-4 border-2 border-[#0d3b66]/50">
             <div 
               className={`h-full rounded-full transition-all duration-1000 ${getTimerColor()}`}
               style={{ 
@@ -137,20 +137,18 @@ const ChoiceQuiz: React.FC = () => {
             />
           </div>
 
-
-
           <div className="w-full flex justify-between items-center mb-6">
-            <span className="text-lg font-bold bg-gradient-to-r from-blue-300 to-blue-400 text-transparent bg-clip-text px-4 py-1.5">
+            <span className="text-lg font-bold text-[#0d3b66] px-4 py-1.5">
               {/* امتیاز: {quizState.score} */}
             </span>
           </div>
 
-          <h2 className="w-full text-xl font-bold mb-6 text-center bg-gradient-to-r from-white to-gray-100 text-transparent bg-clip-text">
+          <h2 className="w-full text-xl mb-6 text-center text-[#0d3b66]">
             {currentQuestion.question}
           </h2>
 
           {quizState.showResult && (
-            <div className={`w-full p-4 mb-4 text-center rounded-xl ${quizState.selectedAnswer === currentQuestion.correctAnswer ? 'bg-green-500/50' : 'bg-red-500/50'}`}>
+            <div className={`w-full p-4 mb-4 text-center rounded-xl ${quizState.selectedAnswer === currentQuestion.correctAnswer ? 'bg-green-500 text-white' : 'bg-red-500 text-white'}`}>
               {quizState.selectedAnswer === currentQuestion.correctAnswer ? 'پاسخ صحیح بود! 👏' : 'پاسخ اشتباه بود! 😕'}
             </div>
           )}
@@ -162,17 +160,14 @@ const ChoiceQuiz: React.FC = () => {
                 onClick={() => handleAnswer(index)}
                 disabled={quizState.showResult}
                 className={`aspect-square p-4 text-base text-center flex items-center justify-center
-                         ${quizState.showResult ? 'cursor-not-allowed' : 'hover:bg-white/40 hover:scale-102 hover:shadow-lg hover:border-white/50'} 
-                         ${getButtonStyle(index)} rounded-xl transition-all duration-300 border border-white/40
+                         ${quizState.showResult ? 'cursor-not-allowed' : 'hover:opacity-90 hover:scale-102 hover:shadow-lg'} 
+                         ${getButtonStyle(index)} rounded-xl transition-all duration-300
                          font-medium`}
               >
                 {option}
               </button>
             ))}
           </div>
-
-
-          
         
       </div>
 
