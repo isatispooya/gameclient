@@ -1,10 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import { missionsGet } from "../services";
+import { useMutation } from "@tanstack/react-query";
+import missionsPatch from "../services/missions.patch";
 
-const useMissions = () => {
-  return useQuery({
-    queryKey: ["missions"],
-    queryFn: missionsGet,
+const useMissions = (id: string) => {
+  return useMutation({
+    mutationKey: ["missions"],
+    mutationFn: () => missionsPatch(id),
   });
 };
 

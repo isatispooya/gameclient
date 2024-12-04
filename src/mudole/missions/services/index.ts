@@ -1,1 +1,1 @@
-export { default as missionsGet } from "./missions.get";
+export { default as missionsGet } from "./missions.patch";
