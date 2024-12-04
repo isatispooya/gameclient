@@ -17,7 +17,7 @@ const Coffee = () => {
     { number: "۸", letter: "ط" },
     { number: "۹", letter: "ض" },
   ];
-
+ 
   const handleOptionClick = (letter: string) => {
     if (currentPosition >= 4) return;
 
