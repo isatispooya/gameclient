@@ -1,23 +1,30 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface RecaptchaProps {
   onVerify?: (success: boolean) => void;
 }
 
 const Recaptcha = ({ onVerify }: RecaptchaProps) => {
+  const navigate = useNavigate();
   const [position, setPosition] = useState(10);
   const [isDragging, setIsDragging] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   
-  // موقعیت هدف که کاربر باید مربع رو بهش برسونه
-  const targetPosition = 75; // این عدد باید رندوم باشه
-  const threshold = 5; // حد مجاز خطا
+  const targetPosition = 75; 
+  const threshold = 5; 
   
   const checkPosition = useCallback(() => {
     const isCorrect = Math.abs(position - targetPosition) <= threshold;
     setIsVerified(isCorrect);
     onVerify?.(isCorrect);
-  }, [position, targetPosition, onVerify]);
+    
+    if (isCorrect) {
+      setTimeout(() => {
+        navigate('/tour');
+      }, 1000);
+    }
+  }, [position, targetPosition, onVerify, navigate]);
 
   const handleDragStart = () => {
     setIsDragging(true);
@@ -29,34 +36,43 @@ const Recaptcha = ({ onVerify }: RecaptchaProps) => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto p-4 bg-white rounded-lg shadow-md">
-      <div className="text-center mb-4">
-        <h3 className="text-lg font-medium text-gray-700">شروع بازی</h3>
-        <p className="text-sm text-gray-500">مربع را به محل مناسب بکشید</p>
+    <div className="w-full max-w-md mx-auto p-6 bg-gradient-to-br from-white to-gray-50 rounded-2xl   border-gray-100">
+      <div className="text-center mb-6">
+        <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">شروع بازی</h3>
+        <p className="text-gray-600 mt-2">مربع را به محل مناسب بکشید</p>
+      </div>
+
+      <div className="mb-6 p-4 bg-gray-50 rounded-lg text-gray-700 text-sm leading-relaxed">
+        <h4 className="font-bold mb-2">خلاصه داستان:</h4>
+        <p>در یک صبح پاییزی، خبر مرگ مشکوک آقای اصلانی، یکی از مدیران مالی برجسته شهر منتشر شد. کارآگاهان برای حل این پرونده به دنبال افرادی با دانش مالی هستند.</p>
       </div>
       
-      <div className="relative w-full aspect-video mb-4">
+      <div className="relative w-full aspect-video mb-6 rounded-xl overflow-hidden shadow-lg">
         <img 
-          className="w-full rounded-lg" 
+          className="w-full h-full object-cover" 
           src="/puzzle_image.png" 
           alt="captcha" 
         />
         <div 
-          className={`absolute w-20 h-20 top-1/2 -translate-y-1/2 transition-all
-            ${isDragging ? 'scale-105' : 'scale-100'}
-            ${isVerified ? 'bg-green-400/30' : 'bg-white/30'}
-            backdrop-blur-sm border rounded-lg cursor-pointer
-            ${isVerified ? 'border-green-500' : 'border-white/40'}`}
+          className={`absolute w-20 h-20 top-1/2 -translate-y-1/2 transition-all duration-300
+            ${isDragging ? 'scale-110 shadow-2xl' : 'scale-100 shadow-lg'} 
+            ${isVerified ? 'bg-green-400/40' : 'bg-white/40'}
+            backdrop-blur-md border-2 rounded-xl cursor-pointer
+            ${isVerified ? 'border-green-500 ring-4 ring-green-300/30' : 'border-white/60'}
+            hover:shadow-xl hover:scale-105`}
           style={{ right: `calc(${position}% - ${position * 0.2}px)` }}
+        />
+        <div 
+          className="absolute w-20 h-20 top-1/2 -translate-y-1/2 bg-white/40 backdrop-blur-md border-2 border-white/60 rounded-xl"
+          style={{ right: `calc(${targetPosition}% - ${targetPosition * 0.2}px)` }}
         />
       </div>
 
       <input 
-        className="w-full h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer 
-          dark:bg-gray-700 accent-blue-500 hover:accent-blue-600 
-          hover:bg-gray-300 dark:hover:bg-gray-600
-          focus:outline-none focus:ring-2 focus:ring-blue-500
-          transition-all duration-200"
+        className="w-full h-3 bg-gradient-to-r from-blue-200 to-purple-200 rounded-full appearance-none cursor-pointer 
+          hover:from-blue-300 hover:to-purple-300
+          focus:outline-none focus:ring-4 focus:ring-blue-200
+          transition-all duration-300"
         value={position}
         onChange={(e) => setPosition(parseInt(e.target.value))}
         onMouseDown={handleDragStart}
@@ -70,8 +86,13 @@ const Recaptcha = ({ onVerify }: RecaptchaProps) => {
       />
 
       {isVerified && (
-        <div className="mt-4 text-center text-green-600">
-          ✓ تایید شد
+        <div className="mt-6 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 text-green-700 rounded-full font-medium">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+            تایید شد
+          </div>
         </div>
       )}
     </div>
