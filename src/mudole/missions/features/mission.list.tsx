@@ -1,4 +1,3 @@
-import { useMissions } from "../hooks";
 import { MissionType } from "../types";
 import MissionCart from "./mission.cart";
 
@@ -48,6 +47,15 @@ const MissionList = () => {
       totalScore: 100,
       description: "توضیحات",
       route: "/qa",
+    },
+    {
+      image: "coffee.avif",
+      title: "قهوه",
+      isCompleted: false,
+      score: 0,
+      totalScore: 100,
+      description: "توضیحات",
+      route: "/coffee",
     },
   ];
 
