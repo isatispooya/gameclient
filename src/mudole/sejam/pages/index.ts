@@ -1,0 +1,1 @@
+export { default as SejamPage } from "./sejam.page";

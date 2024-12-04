@@ -1,0 +1,1 @@
+export { default as PuzzleForm } from "./pazzle.form";
