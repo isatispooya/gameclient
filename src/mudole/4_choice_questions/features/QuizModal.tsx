@@ -34,7 +34,7 @@ const QuizModal: React.FC<QuizModalProps> = ({
         <p className="text-gray-700 mb-3 text-center text-sm">
           {!isCorrect && (
             <>
-              پاسخ صحیح: {options[correctAnswer]}
+              پاسخ صحیح: {options[Array.isArray(correctAnswer) ? correctAnswer[0] : correctAnswer]}
               <br />
             </>
           )}

@@ -1,4 +1,3 @@
-import { useMissions } from "../hooks";
 import { MissionType } from "../types";
 import MissionCart from "./mission.cart";
 
@@ -38,16 +37,16 @@ const MissionList = () => {
       score: 0,
       totalScore: 100,
       description: "توضیحات",
-      route: "/qa",
+      route: "/4_choice_questions",
     },
     {
-      image: "puzzle.svg",
+      image: "SL-050620-30640-14.jpg",
       title: "سوالات سری دوم",
       isCompleted: false,
       score: 0,
       totalScore: 100,
       description: "توضیحات",
-      route: "/qa",
+      route: "/4_option",
     },
   ];
 
