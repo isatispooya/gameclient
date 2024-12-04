@@ -5,7 +5,7 @@ const Coffee = () => {
   const [currentPosition, setCurrentPosition] = React.useState(0);
   const [message, setMessage] = React.useState("");
 
-  const targetWord = "بتیس"; 
+  const targetWord = "بتیس";
   const options = [
     { number: "۱", letter: "ا" },
     { number: "۲", letter: "ب" },
@@ -17,7 +17,7 @@ const Coffee = () => {
     { number: "۸", letter: "ط" },
     { number: "۹", letter: "ض" },
   ];
- 
+
   const handleOptionClick = (letter: string) => {
     if (currentPosition >= 4) return;
 
@@ -25,8 +25,6 @@ const Coffee = () => {
     newGuesses[currentPosition] = letter;
     setGuesses(newGuesses);
     setCurrentPosition(currentPosition + 1);
-
-   
 
     if (currentPosition === 3) {
       const guessedWord = newGuesses.join("");
