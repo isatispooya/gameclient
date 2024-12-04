@@ -66,6 +66,15 @@ const MissionList = () => {
       description: "توضیحات",
       route: "/coffee",
     },
+    {
+      image: "qa-training.png",
+      title: "سوالات سری چهارم",
+      isCompleted: false,
+      score: 0,
+      totalScore: 100,
+      description: "توضیحات",
+      route: "/qa",
+    },
   ];
 
   return (
