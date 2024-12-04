@@ -19,7 +19,7 @@ const MobileLayout = ({ children }: MobileLayoutProps) => {
           </div>
         </header>
 
-        <main className="flex-1 p-5 pb-20 overflow-auto">
+        <main className="flex-1 pb-20 overflow-auto">
           {children}
         </main>
 

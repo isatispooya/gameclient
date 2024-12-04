@@ -2,8 +2,8 @@ export interface Question {
   id: number;
   question: string;
   options: string[];
-  correctAnswer: number;
-  explanation?: string;
+  correctAnswer: number | number[];
+  explanation: string;
   selectedAnswer?: number;
 }
 

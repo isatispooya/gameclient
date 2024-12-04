@@ -3,6 +3,14 @@ import { questions } from './questions';
 import { QuizState } from '../types/types';
 import QuizModal from './QuizModal';
 
+// تابع دریافت سوالات تصادفی
+const getRandomQuestions = (allQuestions: any[], count: number) => {
+  // کپی آرایه و مرتب سازی تصادفی
+  const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
+  // برش تعداد مورد نیاز
+  return shuffled.slice(0, count);
+};
+
 const QuestionCircles: React.FC<{ total: number; current: number }> = ({ total, current }) => {
   return (
     <div className="flex gap-2 justify-center mb-4">
@@ -29,6 +37,8 @@ const QuestionCircles: React.FC<{ total: number; current: number }> = ({ total, 
 };
 
 const ChoiceQuiz: React.FC = () => {
+  // دریافت 10 سوال تصادفی در اولین رندر
+  const [randomQuestions] = useState(() => getRandomQuestions(questions, 10));
   const [quizState, setQuizState] = useState<QuizState>({
     currentQuestionIndex: 0,
     score: 0,
@@ -47,14 +57,14 @@ const ChoiceQuiz: React.FC = () => {
         setQuizState((prev) => ({ ...prev, timeLeft: prev.timeLeft - 1 }));
       }, 1000);
     } else if (quizState.timeLeft === 0 && quizState.timerActive) {
-      questions[quizState.currentQuestionIndex].selectedAnswer = -1;
+      randomQuestions[quizState.currentQuestionIndex].selectedAnswer = -1;
       setQuizState((prev) => ({ ...prev, showModal: true, showResult: true, timerActive: false }));
     }
 
     return () => clearInterval(timer);
-  }, [quizState.timeLeft, quizState.timerActive, quizState.currentQuestionIndex]);
+  }, [quizState.timeLeft, quizState.timerActive, quizState.currentQuestionIndex, randomQuestions]);
 
-  const currentQuestion = questions[quizState.currentQuestionIndex];
+  const currentQuestion = randomQuestions[quizState.currentQuestionIndex];
 
   const handleAnswer = (selectedIndex: number) => {
     setQuizState((prev) => ({ 
@@ -69,7 +79,7 @@ const ChoiceQuiz: React.FC = () => {
       setQuizState((prev) => ({ ...prev, score: prev.score + 1 }));
     }
     
-    questions[quizState.currentQuestionIndex].selectedAnswer = selectedIndex;
+    randomQuestions[quizState.currentQuestionIndex].selectedAnswer = selectedIndex;
 
     setTimeout(() => {
       setQuizState((prev) => ({ ...prev, showModal: true }));
@@ -77,7 +87,7 @@ const ChoiceQuiz: React.FC = () => {
   };
 
   const handleNextQuestion = () => {
-    if (quizState.currentQuestionIndex < questions.length - 1) {
+    if (quizState.currentQuestionIndex < randomQuestions.length - 1) {
       setQuizState((prev) => ({ ...prev, currentQuestionIndex: prev.currentQuestionIndex + 1, showResult: false, selectedAnswer: null, showModal: false, timeLeft: 30, timerActive: true }));
     }
   };
@@ -114,10 +124,10 @@ const ChoiceQuiz: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-white rounded-xl text-[#0d3b66] p-8">
+    <div className="min-h-screen w-full  text-[#0d3b66] p-8">
       <div className="w-full max-w-3xl mx-auto">
           <QuestionCircles 
-            total={questions.length} 
+            total={randomQuestions.length} 
             current={quizState.currentQuestionIndex} 
           />
           

@@ -1,14 +1,12 @@
 import { ScoreLayout } from "../../../layout";
+import TourForm from "../features/tour";
 
 const TourPage = () => {
-    
-  return <div>
+  return (
     <ScoreLayout>
-    TourPage
-
+      <TourForm />
     </ScoreLayout>
-    
-    </div>;
+  );
 };
 
 export default TourPage;
