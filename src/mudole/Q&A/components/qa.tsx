@@ -1,4 +1,11 @@
-const Qa = ({question , handler , answer , setAnswer}) => {
+const Qa = ({ question, handler, answer, setAnswer }) => {
+  const qeustions = [
+    {
+      question: `ش درف نیا هک دراد دوجو یده دنص زا یکی رد قو اه قودنص نیا مان اما هدرک یراذگ هیامرس، رب ام یا صخشم ب اما تسین ا ر د ساس اددای هچرتف وا تش فگ هک هدش هت نیا مان ودنص ق یکی مان مه ن زا م شوق رع دزی ناتسا فو ا .تس ان ودنص نیا م گ هیامرس ق یراذ ؟تسیچ`,
+      answer: "سلام",
+    },
+  ];
+
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8">
       <h2 className="text-2xl font-bold text-gray-800 mb-6">
@@ -33,8 +40,6 @@ const Qa = ({question , handler , answer , setAnswer}) => {
           </div>
         </div>
       </div>
-
-
     </div>
   );
 };
