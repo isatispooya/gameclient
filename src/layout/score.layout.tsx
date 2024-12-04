@@ -57,7 +57,7 @@ const ScoreLayout = ({ children }: ScoreLayoutProps) => {
                     </div>
                 </div>
             </div>
-            <div className="flex-1 pb-6 mt-4 px-4">
+            <div className="flex-1 pb-12 mt-4 px-4">
                 {children}
             </div>
             

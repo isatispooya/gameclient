@@ -46,6 +46,15 @@ const MissionList = () => {
       score: 0,
       totalScore: 100,
       description: "توضیحات",
+      route: "/question2",
+    },
+    {
+      image: "SL-050620-30640-14.jpg",
+      title: "سوالات سری سوم",
+      isCompleted: false,
+      score: 0,
+      totalScore: 100,
+      description: "توضیحات",
       route: "/4_option",
     },
     {

@@ -1,0 +1,1 @@
+export { default as Question2Page } from './question2.page'; 

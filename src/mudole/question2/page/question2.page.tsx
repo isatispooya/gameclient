@@ -1,5 +1,5 @@
 import { ScoreLayout } from "../../../layout";
-import ChoiceQuiz from "../../4_choice_questions/features/choice_quiz";
+import ChoiceQuiz from "../features/qustion2_quiz";
 
 const Question2Page = () => {
   return <ScoreLayout><ChoiceQuiz /></ScoreLayout>;

@@ -26,6 +26,7 @@ const LivePage = lazy(() => import("./mudole/livestream/pages/live.page.tsx"));
 const QaPage = lazy(() => import("./mudole/Q&A/pages/qa.page.tsx"));
 const MapPage = lazy(() => import("./mudole/map/pages/tuor.page.tsx"));
 const TourPage = lazy(() => import("./mudole/tour/pages/tour.psge.tsx"));
+const Question2Page = lazy(() => import("./mudole/question2/page/question2.page.tsx"));
 
 
 const BrokerPage = lazy(() => import("./mudole/brokers/pages/broker.page.tsx"));
@@ -82,6 +83,11 @@ export const router = createBrowserRouter([
       {
         path: "4_option",
         element: <FourOptionsPage />,
+        errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
+      },
+      {
+        path: "question2",
+        element: <Question2Page />,
         errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
       },
       {
