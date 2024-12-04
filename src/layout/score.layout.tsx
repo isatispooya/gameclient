@@ -7,6 +7,7 @@ import { FaMapMarkedAlt } from 'react-icons/fa';
 import { IoStatsChart } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 import { THEME_COLOR } from '../config';
+import { RiPuzzleFill } from 'react-icons/ri';
 
 interface ScoreLayoutProps {
     children: ReactNode;
@@ -67,7 +68,11 @@ const ScoreLayout = ({ children }: ScoreLayoutProps) => {
                 </button>
                 <button onClick={() => navigate('/')} className="flex-1 flex flex-col items-center gap-1 text-white py-2 px-4 rounded-xl font-bold transition-colors">
                     <FaMapMarkedAlt className="text-xl" />
-                    <span>تور</span>
+                    <span>نقشه راه </span>
+                </button>
+                <button onClick={() => navigate('/tour')} className="flex-1 flex flex-col items-center gap-1 text-white py-2 px-4 rounded-xl font-bold transition-colors">
+                    <RiPuzzleFill className="text-xl" />
+                    <span>تور بازی</span>
                 </button>
                 <button onClick={() => navigate('/ranking')} className="flex-1 flex flex-col items-center gap-1 text-white py-2 px-4 rounded-xl font-bold transition-colors">
                     <IoStatsChart className="text-xl" />

@@ -15,12 +15,12 @@ const Step = ({ step }: { step: StepType }) => {
 
       <div
         className={`
-        w-10 h-10 rounded-full flex items-center justify-center shrink-0
+        w-12 h-12 rounded-full flex items-center justify-center shrink-0
         ${step.done ? "bg-green-500" : "bg-gray-300"}
         transition-colors duration-300 z-10
       `}
       >
-        <div className="text-white text-xl">{step.icon}</div>
+        <div className="text-white text-2xl">{step.icon}</div>
       </div>
 
       {!isEven && <div className="flex-1" />}

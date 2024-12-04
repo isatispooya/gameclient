@@ -3,7 +3,6 @@ import { createBrowserRouter } from "react-router-dom";
 
 const App = lazy(() => import("./App.tsx"));
 const SignupPage = lazy(() => import("./mudole/auth/pages/singup.page.tsx"));
-const TourPage = lazy(() => import("./mudole/tour/pages/tuor.page.tsx"));
 const MissionsPage = lazy(
   () => import("./mudole/missions/pages/missions.page.tsx")
 );
@@ -24,6 +23,9 @@ const Autotyping = lazy(
 );
 const LivePage = lazy(() => import("./mudole/livestream/pages/live.page.tsx"));
 const QaPage = lazy(() => import("./mudole/Q&A/pages/qa.page.tsx"));
+const MapPage = lazy(() => import("./mudole/map/pages/tuor.page.tsx"));
+const TourPage = lazy(() => import("./mudole/tour/pages/tour.psge.tsx"));
+
 
 export const router = createBrowserRouter([
   {
@@ -37,9 +39,15 @@ export const router = createBrowserRouter([
       },
       {
         path: "",
+        element: <MapPage />,
+        errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
+      },
+      {
+        path: "tour",
         element: <TourPage />,
         errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
       },
+
       {
         path: "missions",
         element: <MissionsPage />,
