@@ -1,21 +1,23 @@
-import { useState } from 'react';
-import { Button, TextField, Box, Typography, Paper } from '@mui/material';
+import { useState } from "react";
+import { Button, TextField, Box, Typography, Paper } from "@mui/material";
+import { useSejamOtp, useSejamVerify } from "../hooks";
 
 const SejamForm = () => {
-  const [step, setStep] = useState<'nationalCode' | 'otp'>('nationalCode');
-  const [nationalCode, setNationalCode] = useState('');
-  const [otp, setOtp] = useState('');
+  const [step, setStep] = useState<"nationalCode" | "otp">("nationalCode");
+  const [nationalCode, setNationalCode] = useState("");
+  const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
+  const { otpSejamMutate } = useSejamOtp();
+  const { verifyOtpSejamMutate } = useSejamVerify();
 
   const handleNationalCodeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
-      // اینجا API call برای ارسال کد ملی و دریافت کد تایید
-      // await sendNationalCode(nationalCode);
-      setStep('otp');
+      otpSejamMutate(nationalCode);
+      setStep("otp");
     } catch (error) {
-      console.error('خطا در ارسال کد ملی:', error);
+      console.error("خطا در ارسال کد ملی:", error);
     } finally {
       setLoading(false);
     }
@@ -25,20 +27,18 @@ const SejamForm = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      // اینجا API call برای تایید کد پیامک شده
-      // await verifyOtp(nationalCode, otp);
-      // در صورت موفقیت آمیز بودن، کاربر به صفحه بعدی هدایت می‌شود
+      verifyOtpSejamMutate({ otp, uniqueIdentifier: nationalCode });
     } catch (error) {
-      console.error('خطا در تایید کد:', error);
+      console.error("خطا در تایید کد:", error);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <Box sx={{ maxWidth: 400, mx: 'auto', mt: 4 }}>
+    <Box sx={{ maxWidth: 400, mx: "auto", mt: 4 }}>
       <Paper sx={{ p: 3 }}>
-        {step === 'nationalCode' ? (
+        {step === "nationalCode" ? (
           <form onSubmit={handleNationalCodeSubmit}>
             <Typography variant="h6" gutterBottom>
               ورود کد ملی
@@ -50,15 +50,15 @@ const SejamForm = () => {
               onChange={(e) => setNationalCode(e.target.value)}
               margin="normal"
               required
-              inputProps={{ 
+              inputProps={{
                 maxLength: 10,
-                pattern: '[0-9]*'
+                pattern: "[0-9]*",
               }}
             />
-            <Button 
-              fullWidth 
-              variant="contained" 
-              type="submit" 
+            <Button
+              fullWidth
+              variant="contained"
+              type="submit"
               disabled={loading || nationalCode.length !== 10}
               sx={{ mt: 2 }}
             >
@@ -68,8 +68,15 @@ const SejamForm = () => {
         ) : (
           <form onSubmit={handleOtpSubmit}>
             <Typography variant="h6" gutterBottom>
-              تایید شماره موبایل
+              تایید کد ملی
             </Typography>
+            <TextField
+              fullWidth
+              label="کد ملی"
+              value={nationalCode}
+              disabled
+              margin="normal"
+            />
             <TextField
               fullWidth
               label="کد تایید"
@@ -77,16 +84,16 @@ const SejamForm = () => {
               onChange={(e) => setOtp(e.target.value)}
               margin="normal"
               required
-              inputProps={{ 
+              inputProps={{
                 maxLength: 6,
-                pattern: '[0-9]*'
+                pattern: "[0-9]*",
               }}
             />
-            <Button 
-              fullWidth 
-              variant="contained" 
+            <Button
+              fullWidth
+              variant="contained"
               type="submit"
-              disabled={loading || otp.length !== 6}
+              onClick={handleOtpSubmit}
               sx={{ mt: 2 }}
             >
               تایید
@@ -94,7 +101,7 @@ const SejamForm = () => {
             <Button
               fullWidth
               variant="text"
-              onClick={() => setStep('nationalCode')}
+              onClick={() => setStep("nationalCode")}
               sx={{ mt: 1 }}
             >
               بازگشت به مرحله قبل

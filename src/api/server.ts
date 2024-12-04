@@ -1,0 +1,1 @@
+export const server = "http://192.168.62.106:7000";

@@ -1,15 +1,12 @@
-import { ScoreLayout } from "../../../layout"
-import {MissionList} from "../features"
-
-
-
+import { ScoreLayout } from "../../../layout";
+import { MissionList } from "../features";
 
 const MissionsPage = () => {
-    return (
-        <ScoreLayout>
-            <MissionList />
-        </ScoreLayout>
-    )
-}
+  return (
+    <ScoreLayout>
+      <MissionList />
+    </ScoreLayout>
+  );
+};
 
-export default MissionsPage
+export default MissionsPage;

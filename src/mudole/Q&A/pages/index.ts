@@ -1,0 +1,1 @@
+export { default as QaPage } from "./qa.page";
