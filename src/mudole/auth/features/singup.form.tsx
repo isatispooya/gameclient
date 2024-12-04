@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLogin, useOtp } from "../hooks";
 
-const SignupFrom = () => {
+const SignupFrom = () => {  
   const navigate = useNavigate();
   const { mutate: otpMutate } = useOtp();
   const { mutate: loginMutate } = useLogin();
@@ -36,8 +36,8 @@ const SignupFrom = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#0d3b66] via-[#084c8d] to-[#12527c]">
-      <div className="w-full max-w-[450px] p-6 rounded-lg backdrop-blur-lg">
+    <div className="min-h-screen  flex  bg-gradient-to-br from-[#0d3b66] via-[#084c8d] to-[#12527c] ">
+      <div className="w-full max-w-[450px] p-6 rounded-lg backdrop-blur-lg m-auto">
         {step === "phone" ? (
           <form onSubmit={handlePhoneSubmit}>
             <h1 className="text-4xl mt-4 mb-8 text-white text-center drop-shadow-md">
@@ -45,7 +45,7 @@ const SignupFrom = () => {
             </h1>
 
             <div className="mb-6 w-full">
-              <label className="block text-white/90 mb-2">نام (اختیاری)</label>
+              <label className="block text-white/90 mb-2">نام (نمایشی)</label>
               <input
                 type="text"
                 value={name}
@@ -67,7 +67,7 @@ const SignupFrom = () => {
                 className="w-full h-14 text-white bg-white/10 backdrop-blur-sm rounded-xl border-2 border-white/30 px-5 text-lg outline-none mb-2 hover:border-white/50 focus:border-white focus:scale-[1.01] transition duration-200"
               />
             </div>
-          
+
             <button
               type="submit"
               disabled={phoneNumber.length !== 11}
@@ -125,7 +125,7 @@ const SignupFrom = () => {
             <button
               type="button"
               onClick={() => setStep("phone")}
-              className="w-full h-12 mt-2 text-white/80 text-sm transition-all duration-300 hover:text-white"
+              className="w-full mt-2 text-white/80 text-sm transition-all duration-300 hover:text-white"
             >
               تغییر شماره موبایل
             </button>

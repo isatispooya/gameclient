@@ -5,7 +5,7 @@ import { IoArrowBack, IoRefresh } from "react-icons/io5";
 import { AxiosError } from "axios";
 
 const Broker = () => {
-  const { mutate, data } = useMissions("2");
+  const { mutate } = useMissions("2");
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -15,13 +15,11 @@ const Broker = () => {
       },
       onError: (error: Error) => {
         const axiosError = error as AxiosError<{ error: string }>;
-       
+
         toast.error(axiosError?.response?.data?.error || "خطایی رخ داده است");
       },
     });
   };
-  console.log(data);
-
   const handleBack = () => {
     navigate("/");
   };
