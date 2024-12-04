@@ -3,11 +3,8 @@ import { questions } from './questions';
 import { QuizState, Question } from '../types/types';
 import QuizModal from './QuizModal';
 
-// تابع دریافت سوالات تصادفی
 const getRandomQuestions = (allQuestions: Question[], count: number) => {
-  // کپی آرایه و مرتب سازی تصادفی
   const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
-  // برش تعداد مورد نیاز
   return shuffled.slice(0, count);
 };
 
@@ -37,8 +34,9 @@ const QuestionCircles: React.FC<{ total: number; current: number }> = ({ total, 
 };
 
 const ChoiceQuiz: React.FC = () => {
-  // دریافت 10 سوال تصادفی در اولین رندر
-  const [randomQuestions] = useState(() => getRandomQuestions(questions, 10));
+  const [randomQuestions] = useState(() => getRandomQuestions(questions, 5)); // Changed from 10 to 5
+  const [showStartModal, setShowStartModal] = useState(true);
+  const [countdown, setCountdown] = useState<number | null>(null);
   const [quizState, setQuizState] = useState<QuizState>({
     currentQuestionIndex: 0,
     score: 0,
@@ -46,8 +44,25 @@ const ChoiceQuiz: React.FC = () => {
     selectedAnswer: null,
     showModal: false,
     timeLeft: 30,
-    timerActive: true
+    timerActive: false
   });
+
+  const startQuiz = () => {
+    setShowStartModal(false);
+    setCountdown(3);
+  };
+
+  useEffect(() => {
+    if (countdown === null) return;
+
+    if (countdown > 0) {
+      const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+      return () => clearTimeout(timer);
+    } else if (countdown === 0) {
+      setCountdown(null);
+      setQuizState(prev => ({...prev, timerActive: true}));
+    }
+  }, [countdown]);
 
   useEffect(() => {
     let timer: ReturnType<typeof setInterval>;
@@ -122,6 +137,41 @@ const ChoiceQuiz: React.FC = () => {
     if (quizState.timeLeft <= 10) return 'bg-red-500';
     return 'bg-green-500';
   };
+  if (showStartModal) {
+    return (
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center backdrop-blur-sm">
+        <div className="bg-gradient-to-br from-[#0d3b66] to-[#12527c] p-10 rounded-2xl text-center shadow-2xl border-4 border-white/20">
+          <h2 className="text-3xl font-bold mb-6 text-white">
+            آماده‌ای شروع کنی؟ 🎮
+          </h2>
+          <button 
+            onClick={startQuiz}
+            className="bg-gradient-to-r from-emerald-400 to-cyan-400 text-white px-8 py-3 rounded-xl text-xl font-bold hover:from-emerald-500 hover:to-cyan-500 shadow-lg"
+          >
+            شروع بازی 🚀
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (countdown !== null) {
+    return (
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center backdrop-blur-sm">
+        <div className="relative">
+          <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 animate-pulse flex items-center justify-center">
+            <div className="w-28 h-28 rounded-full bg-gradient-to-br from-indigo-600 to-blue-500 flex items-center justify-center animate-bounce">
+              <span className="text-6xl font-bold text-white drop-shadow-lg animate-scale">
+                {countdown}
+              </span>
+            </div>
+          </div>
+          <div className="absolute -inset-2 rounded-full border-4 border-white/20 animate-spin-slow"></div>
+          <div className="absolute -inset-4 rounded-full border-4 border-white/10 animate-spin-slower"></div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen w-full  text-[#0d3b66] p-8">
