@@ -8,6 +8,9 @@ const MissionsPage = lazy(() => import('./mudole/missions/pages/missions.page.ts
 const PuzzlePage = lazy(() => import('./mudole/puzzle/pages/puzzle.page.tsx'));
 const SejamPage = lazy(() => import('./mudole/sejam/pages/sejam.page.tsx'));
 const RankingPage = lazy(() => import('./mudole/ranking/pages/ranking.page.tsx'));
+const FourChoiceQuestionsPage = lazy(() => import('./mudole/4_choice_questions/page/4_choice_questions.page.tsx'));
+const FourOptionsPage = lazy(() => import('./mudole/4_options/pages/4_options.tsx'));
+const AwardsPage = lazy(() => import('./mudole/awards/pages/awards.page.tsx'));
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +45,21 @@ export const router = createBrowserRouter([
       {
         path: 'ranking',
         element: <RankingPage />,
+        errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
+      },
+      {
+        path: '4_choice_questions',
+        element: <FourChoiceQuestionsPage />,
+        errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
+      },
+      {
+        path: '4_option',
+        element: <FourOptionsPage />,
+        errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
+      },
+      {
+        path: 'awards',
+        element: <AwardsPage />,
         errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
       },
     ],
