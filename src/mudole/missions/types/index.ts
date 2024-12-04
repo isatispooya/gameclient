@@ -1,4 +1,4 @@
-export interface MissionType {
+export type MissionType = {
   image: string;
   title: string;
   isCompleted: boolean;

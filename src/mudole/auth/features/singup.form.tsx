@@ -29,7 +29,7 @@ const SignupFrom = () => {
         code: verificationCode,
         name: name,
       });
-      navigate("/");
+      navigate("/recaptcha");
     } catch (error) {
       console.error("خطا در تایید کد:", error);
     }
