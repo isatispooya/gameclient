@@ -3,9 +3,9 @@ import React from 'react';
 interface QuizModalProps {
   timeLeft: number;
   selectedAnswer: number | null;
-  correctAnswer: number;
+  correctAnswer: number | number[];
   options: string[];
-  explanation?: string;
+  explanation: string;
   onNextQuestion: () => void;
   onQuit: () => void;
 }
@@ -34,7 +34,7 @@ const QuizModal: React.FC<QuizModalProps> = ({
         <p className="text-gray-700 mb-3 text-center text-sm">
           {!isCorrect && (
             <>
-              پاسخ صحیح: {options[correctAnswer]}
+              پاسخ صحیح: {options[Array.isArray(correctAnswer) ? correctAnswer[0] : correctAnswer]}
               <br />
             </>
           )}

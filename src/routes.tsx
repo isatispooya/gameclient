@@ -32,6 +32,7 @@ const BrokerPage = lazy(() => import("./mudole/brokers/pages/broker.page.tsx"));
 const RecaptchaPage = lazy(
   () => import("./mudole/recaptcha/page/recaptcha.page.tsx")
 );
+const CoffeePage = lazy(() => import("./mudole/coffee/pages/coffee.page.tsx"));
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -111,6 +112,11 @@ export const router = createBrowserRouter([
       {
         path: "recaptcha",
         element: <RecaptchaPage />,
+        errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
+      },
+      {
+        path: "coffee",
+        element: <CoffeePage />,
         errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
       },
     ],

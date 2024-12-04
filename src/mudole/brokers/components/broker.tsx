@@ -2,9 +2,10 @@ import { useNavigate } from "react-router-dom";
 import { useMissions } from "../../missions/hooks";
 import toast, { Toaster } from "react-hot-toast";
 import { IoArrowBack, IoRefresh } from "react-icons/io5";
+import { AxiosError } from "axios";
 
 const Broker = () => {
-  const { mutate , data } = useMissions("2");
+  const { mutate } = useMissions("2");
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -12,12 +13,13 @@ const Broker = () => {
       onSuccess: () => {
         toast.success("بروزرسانی با موفقیت انجام شد");
       },
-      onError: (data: any) => {
-        toast.error(data?.response?.error || "خطایی رخ داده است");
+      onError: (error: Error) => {
+        const axiosError = error as AxiosError<{ error: string }>;
+
+        toast.error(axiosError?.response?.data?.error || "خطایی رخ داده است");
       },
     });
   };
-
   const handleBack = () => {
     navigate("/");
   };
