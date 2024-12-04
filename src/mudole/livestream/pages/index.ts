@@ -1,0 +1,1 @@
+export { default as LivePage } from "./live.page";

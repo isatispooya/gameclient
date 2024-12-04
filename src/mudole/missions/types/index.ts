@@ -1,1 +1,1 @@
-export * from './mission.type'
+export * from "./mission.type";
