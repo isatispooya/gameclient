@@ -3,9 +3,9 @@ import React from 'react';
 interface QuizModalProps {
   timeLeft: number;
   selectedAnswer: number | null;
-  correctAnswer: number;
+  correctAnswer: number | number[];
   options: string[];
-  explanation?: string;
+  explanation: string;
   onNextQuestion: () => void;
   onQuit: () => void;
 }
