@@ -94,12 +94,13 @@ const Awards = () => {
         {`
           .awards-container {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             gap: 24px;
             padding: 20px;
             perspective: 1200px;
             height: 100vh;
-            overflow-y: auto;
+            overflow-x: auto;
+            overflow-y: hidden;
           }
 
           .box {
@@ -195,12 +196,12 @@ const Awards = () => {
         `}
       </style>
 
-      <div className="flex flex-col gap-8 p-6">
+      <div className="flex flex-row gap-8 p-6">
         {awardsData.awards.map((award) => (
-          <div key={award.id} className="w-full max-w-[300px] mx-auto">
+          <div key={award.id} className="min-w-[300px]">
             <div
               data-award-id={award.id}
-              className={`rounded-3xl p-8 transition-all duration-500 bg-gradient-to-br w-full
+              className={`rounded-3xl p-8 transition-all duration-500 bg-gradient-to-br
                 ${claimedAwards.includes(award.id) 
                   ? 'from-gray-100 to-gray-200 opacity-60' 
                   : 'from-rose-300 via-pink-300 to-purple-400 hover:from-rose-400 hover:via-pink-400 hover:to-purple-500'
@@ -211,12 +212,14 @@ const Awards = () => {
                 }`}
               onClick={() => handleAwardClick(award.id)}
             >
-              <div className="flex flex-col items-center text-center">
-                <div className="w-32 h-32 flex items-center justify-center animate-[floatAnimation_2s_ease-in-out_infinite]">
-                  <span className="text-7xl filter drop-shadow-lg">🎁</span>
+              <div className="flex items-start">
+                <div className="w-24 h-24 flex items-center justify-center animate-[floatAnimation_2s_ease-in-out_infinite] ml-4">
+                  <span className="text-6xl filter drop-shadow-lg">🎁</span>
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mt-4">{award.title}</h3>
-                <p className="text-sm text-gray-600 mt-2">{award.description}</p>
+                <div className="flex flex-col flex-1">
+                  <h3 className="text-xl font-bold text-gray-800">{award.title}</h3>
+                  <p className="text-sm text-gray-600 mt-2">{award.description}</p>
+                </div>
               </div>
             </div>
           </div>
