@@ -30,7 +30,7 @@ const TourPage = lazy(() => import("./mudole/tour/pages/tour.psge.tsx"));
 
 const BrokerPage = lazy(() => import("./mudole/brokers/pages/broker.page.tsx"));
 const RecaptchaPage = lazy(
-  () => import("./mudole/reCaptcha/page/recaptcha.page.tsx")
+  () => import("./mudole/recaptcha/page/recaptcha.page.tsx")
 );
 export const router = createBrowserRouter([
   {

@@ -1,5 +1,4 @@
-import React from "react";
-import Recaptcha from "../components/recaptcha";
+import { Recaptcha } from "../components";
 
 const RecaptchaPage = () => {
   return (

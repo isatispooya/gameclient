@@ -1,106 +1,78 @@
-import React, { useState, useRef } from "react";
-import styled from "styled-components";
+import { useState, useEffect, useCallback } from 'react';
 
-const Recaptcha = () => {
-  const [isVerified, setIsVerified] = useState(false);
+interface RecaptchaProps {
+  onVerify?: (success: boolean) => void;
+}
+
+const Recaptcha = ({ onVerify }: RecaptchaProps) => {
+  const [position, setPosition] = useState(10);
   const [isDragging, setIsDragging] = useState(false);
-  const [position, setPosition] = useState({ x: 20, y: 50 });
-  const offset = useRef({ x: 0, y: 0 });
+  const [isVerified, setIsVerified] = useState(false);
+  
+  // موقعیت هدف که کاربر باید مربع رو بهش برسونه
+  const targetPosition = 75; // این عدد باید رندوم باشه
+  const threshold = 5; // حد مجاز خطا
+  
+  const checkPosition = useCallback(() => {
+    const isCorrect = Math.abs(position - targetPosition) <= threshold;
+    setIsVerified(isCorrect);
+    onVerify?.(isCorrect);
+  }, [position, targetPosition, onVerify]);
 
-  const handleMouseDown = (e: React.MouseEvent) => {
+  const handleDragStart = () => {
     setIsDragging(true);
-    const rect = (e.target as HTMLElement).getBoundingClientRect();
-    offset.current = {
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    };
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (isDragging) {
-      setPosition({
-        x: e.clientX - offset.current.x,
-        y: e.clientY - offset.current.y,
-      });
-    }
-  };
-
-  const handleMouseUp = (e: React.MouseEvent) => {
+  const handleDragEnd = () => {
     setIsDragging(false);
-    const targetRect = document
-      .getElementById("target-zone")
-      ?.getBoundingClientRect();
-    const pieceRect = (e.target as HTMLElement).getBoundingClientRect();
-
-    if (
-      targetRect &&
-      pieceRect.left >= targetRect.left - 10 &&
-      pieceRect.left <= targetRect.left + 10
-    ) {
-      setIsVerified(true);
-    }
+    checkPosition();
   };
 
   return (
-    <Container>
-      <PuzzleArea onMouseMove={handleMouseMove}>
-        <TargetZone id="target-zone" />
-        <PuzzlePiece
-          onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
-          isDragging={isDragging}
-          style={{
-            left: `${position.x}px`,
-            top: `${position.y}px`,
-            cursor: isDragging ? "grabbing" : "grab",
-            opacity: 1,
-          }}
+    <div className="w-full max-w-md mx-auto p-4 bg-white rounded-lg shadow-md">
+      <div className="text-center mb-4">
+        <h3 className="text-lg font-medium text-gray-700">تایید امنیتی</h3>
+        <p className="text-sm text-gray-500">مربع را به محل مناسب بکشید</p>
+      </div>
+      
+      <div className="relative w-full aspect-video mb-4">
+        <img 
+          className="w-full rounded-lg" 
+          src="/puzzle_image.png" 
+          alt="captcha" 
         />
-      </PuzzleArea>
-      {isVerified && <SuccessMessage>تایید شد!</SuccessMessage>}
-    </Container>
+        <div 
+          className={`absolute w-20 h-20 top-1/2 -translate-y-1/2 transition-all
+            ${isDragging ? 'scale-105' : 'scale-100'}
+            ${isVerified ? 'bg-green-400/30' : 'bg-white/30'}
+            backdrop-blur-sm border rounded-lg cursor-pointer
+            ${isVerified ? 'border-green-500' : 'border-white/40'}`}
+          style={{ right: `calc(${position}% - ${position * 0.2}px)` }}
+        />
+      </div>
+
+      <input 
+        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer 
+          dark:bg-gray-700 accent-blue-500 hover:accent-blue-600"
+        value={position}
+        onChange={(e) => setPosition(parseInt(e.target.value))}
+        onMouseDown={handleDragStart}
+        onMouseUp={handleDragEnd}
+        onTouchStart={handleDragStart}
+        onTouchEnd={handleDragEnd}
+        type="range"
+        min="0"
+        max="80"
+        step="1"
+      />
+
+      {isVerified && (
+        <div className="mt-4 text-center text-green-600">
+          ✓ تایید شد
+        </div>
+      )}
+    </div>
   );
 };
-
-const Container = styled.div`
-  width: 300px;
-  height: 200px;
-  border: 1px solid #ccc;
-  position: relative;
-  user-select: none;
-`;
-
-const PuzzleArea = styled.div`
-  width: 100%;
-  height: 100%;
-  position: relative;
-  background: #f5f5f5;
-`;
-
-const TargetZone = styled.div`
-  width: 50px;
-  height: 50px;
-  border: 2px dashed #666;
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-`;
-
-const PuzzlePiece = styled.div<{ isDragging: boolean }>`
-  width: 50px;
-  height: 50px;
-  background: #2196f3;
-  position: absolute;
-  touch-action: none;
-`;
-
-const SuccessMessage = styled.div`
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: green;
-`;
 
 export default Recaptcha;
