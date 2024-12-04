@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { questions } from './questions';
-import { QuizState } from '../types/types';
+import { QuizState, Question } from '../types/types';
 import QuizModal from './QuizModal';
 
 // تابع دریافت سوالات تصادفی
-const getRandomQuestions = (allQuestions: any[], count: number) => {
+const getRandomQuestions = (allQuestions: Question[], count: number) => {
   // کپی آرایه و مرتب سازی تصادفی
   const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
   // برش تعداد مورد نیاز
@@ -133,7 +133,6 @@ const ChoiceQuiz: React.FC = () => {
           
           <div className="w-full flex justify-between items-center mb-2">
             <span className="text-lg text-[#0d3b66] px-4 py-1">
-              {/* امتیاز: {quizState.score} */}
             </span>
           </div>
 
