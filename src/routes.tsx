@@ -27,6 +27,10 @@ const MapPage = lazy(() => import("./mudole/map/pages/tuor.page.tsx"));
 const TourPage = lazy(() => import("./mudole/tour/pages/tour.psge.tsx"));
 
 
+const BrokerPage = lazy(() => import("./mudole/brokers/pages/broker.page.tsx"));
+const RecaptchaPage = lazy(
+  () => import("./mudole/reCaptcha/page/recaptcha.page.tsx")
+);
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -96,6 +100,16 @@ export const router = createBrowserRouter([
       {
         path: "qa",
         element: <QaPage />,
+        errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
+      },
+      {
+        path: "broker",
+        element: <BrokerPage />,
+        errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
+      },
+      {
+        path: "recaptcha",
+        element: <RecaptchaPage />,
         errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
       },
     ],
