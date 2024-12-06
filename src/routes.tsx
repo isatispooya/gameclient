@@ -31,7 +31,7 @@ const Question2Page = lazy(() => import("./mudole/question2/page/question2.page.
 
 const BrokerPage = lazy(() => import("./mudole/brokers/pages/broker.page.tsx"));
 const RecaptchaPage = lazy(
-  () => import("./mudole/recaptcha/page/recaptcha.page.tsx")
+  () => import("./mudole/reCaptcha/page/recaptcha.page.tsx")
 );
 const CoffeePage = lazy(() => import("./mudole/coffee/pages/coffee.page.tsx"));
 export const router = createBrowserRouter([
@@ -40,12 +40,12 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "singup",
+        path: "",
         element: <SignupPage />,
         errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
       },
       {
-        path: "",
+        path: "/map",
         element: <MapPage />,
         errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
       },

@@ -1,9 +1,12 @@
 import axios from "axios";
-import { server } from "./server";
 import { getCookie, setCookie } from "./cookie";
+import { API_BASE_URL } from "./server";
 
-const api = axios.create({
-  baseURL: server,
+export const api = axios.create({
+  baseURL: API_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
 let isRefreshing = false;
@@ -44,7 +47,7 @@ api.interceptors.response.use(
 
         try {
           const refreshToken = getCookie("refresh_token");
-          const response = await axios.post(`${server}/token/refresh/`, {
+          const response = await axios.post(`${API_BASE_URL}/token/refresh/`, {
             refresh: refreshToken,
           });
 
@@ -59,7 +62,7 @@ api.interceptors.response.use(
           isRefreshing = false;
           refreshSubscribers = [];
 
-          window.location.href = "/singup";
+          // window.location.href = "/";
           return Promise.reject(refreshError);
         }
       } else {

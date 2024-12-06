@@ -1,1 +1,1 @@
-export const server = "http://192.168.62.106:7000";
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://gameapi.isatispooya.com';

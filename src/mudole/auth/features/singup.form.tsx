@@ -11,6 +11,7 @@ const SignupFrom = () => {
   const [verificationCode, setVerificationCode] = useState("");
   const [name, setName] = useState("");
 
+
   const handlePhoneSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {

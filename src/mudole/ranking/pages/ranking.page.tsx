@@ -1,10 +1,10 @@
 import ScoreLayout from "../../../layout/score.layout";
-
+import { RankingTable } from "../features";
 
 const RankingPage = () => {
     return (
         <ScoreLayout>
-            <div>RankingPage</div>
+            <RankingTable />
         </ScoreLayout>
 
     )

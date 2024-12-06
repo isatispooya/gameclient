@@ -1,7 +1,7 @@
 import api from "../../../api/api";
 
-const missionsPatch = async (id: string) => {
-  const response = await api.patch(`/missions/${id}/`);
+const missionsPatch = async () => {
+  const response = await api.patch(`/missions/`);
   return response.data;
 };
 

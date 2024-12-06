@@ -1,4 +1,4 @@
-interface MissionType {
+export type MissionType = {
   image: string | React.ReactElement;
   title: string;
   isCompleted: boolean;

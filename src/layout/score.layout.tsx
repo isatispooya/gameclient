@@ -8,7 +8,7 @@ import { IoStatsChart } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 import { THEME_COLOR } from '../config';
 import { RiPuzzleFill } from 'react-icons/ri';
-
+import { useScoreGet } from '../mudole/ranking/hooks';
 interface ScoreLayoutProps {
     children: ReactNode;
 }
@@ -18,6 +18,7 @@ const ScoreLayout = ({ children }: ScoreLayoutProps) => {
     const [timeLeft, setTimeLeft] = useState<string>('');
 
     const navigate = useNavigate();
+    const { data: score } = useScoreGet();
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -45,11 +46,11 @@ const ScoreLayout = ({ children }: ScoreLayoutProps) => {
                 <div className="flex items-center justify-between px-6 py-3 border-b">
                     <div className="flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-lg shadow-sm">
                         <GiPodium className="text-gray-700 text-xl" />
-                        <span className="text-xl font-bold text-green-600">۳</span>
+                        <span className="text-xl font-bold text-green-600">{score?.user_rank}</span>
                     </div>
                     <div className="flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-lg shadow-sm">
                         <MdOutlineSportsScore className="text-gray-700 text-xl" />
-                        <span className="text-xl font-bold text-blue-600">۱۲۰</span>
+                        <span className="text-xl font-bold text-blue-600">{score?.user_score}</span>
                     </div>
                     <div className="flex items-center gap-2 bg-gray-50 px-4 py-2 rounded-lg shadow-sm">
                         <BsClockFill className="text-gray-700 text-xl" />
@@ -66,7 +67,7 @@ const ScoreLayout = ({ children }: ScoreLayoutProps) => {
                     <FaTasks className="text-xl" />
                     <span>ماموریت‌ها</span>
                 </button>
-                <button onClick={() => navigate('/')} className="flex-1 flex flex-col items-center gap-1 text-white py-2 px-4 rounded-xl font-bold transition-colors">
+                <button onClick={() => navigate('/map')} className="flex-1 flex flex-col items-center gap-1 text-white py-2 px-4 rounded-xl font-bold transition-colors">
                     <FaMapMarkedAlt className="text-xl" />
                     <span>نقشه راه </span>
                 </button>

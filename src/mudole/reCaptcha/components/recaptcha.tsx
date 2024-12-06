@@ -38,8 +38,7 @@ const Recaptcha = ({ onVerify }: RecaptchaProps) => {
   return (
     <div className="w-full max-w-md mx-auto p-6 bg-gradient-to-br from-white to-gray-50 rounded-2xl   border-gray-100">
       <div className="text-center mb-6">
-        <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">شروع بازی</h3>
-        <p className="text-gray-600 mt-2">مربع را به محل مناسب بکشید</p>
+        <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">بازی سود و سقوط</h3>
       </div>
 
       <div className="mb-6 p-4 bg-gray-50 rounded-lg text-gray-700 text-sm leading-relaxed">
@@ -84,6 +83,8 @@ const Recaptcha = ({ onVerify }: RecaptchaProps) => {
         max="80"
         step="1"
       />
+        <p className="text-gray-600 mt-2">مربع را به محل مناسب بکشید</p>
+
 
       {isVerified && (
         <div className="mt-6 text-center">
