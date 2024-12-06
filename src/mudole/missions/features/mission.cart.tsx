@@ -24,7 +24,7 @@ const MissionCart = ({
       <div className="flex items-center gap-4">
         <div className="w-12 h-12 flex items-center justify-center relative">
           <img
-            src={image}
+            src={typeof image === 'string' ? image : ''}
             alt={title}
             className="w-full h-full object-cover rounded-md"
             width={48}
