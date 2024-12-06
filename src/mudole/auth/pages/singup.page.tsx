@@ -1,8 +1,11 @@
-import {SignupFrom} from "../features";
-
+import { SignupFrom } from "../features";
+import { Sponser } from "../../sponser/features";
 const SignupPage = () => {
   return (
-    <SignupFrom />
+    <>
+      <SignupFrom />
+      <Sponser />
+    </>
   );
 };
 

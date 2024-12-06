@@ -5,7 +5,7 @@ import { GiPodium } from 'react-icons/gi';
 import { FaTasks } from 'react-icons/fa';
 import { FaMapMarkedAlt } from 'react-icons/fa';
 import { IoStatsChart } from 'react-icons/io5';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { THEME_COLOR } from '../config';
 import { RiPuzzleFill } from 'react-icons/ri';
 import { useScoreGet } from '../mudole/ranking/hooks';
@@ -18,7 +18,13 @@ const ScoreLayout = ({ children }: ScoreLayoutProps) => {
     const [timeLeft, setTimeLeft] = useState<string>('');
 
     const navigate = useNavigate();
+    const location = useLocation();
     const { data: score } = useScoreGet();
+
+    const convertToFarsiNumbers = (num: string) => {
+        const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+        return num.replace(/[0-9]/g, (d) => farsiDigits[parseInt(d)]);
+    };
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -29,16 +35,25 @@ const ScoreLayout = ({ children }: ScoreLayoutProps) => {
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            setTimeLeft(`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`);
-
+            const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
             if (distance < 0) {
                 clearInterval(timer);
                 setTimeLeft('پایان زمان');
+            } else {
+                setTimeLeft(convertToFarsiNumbers(timeString));
             }
         }, 1000);
 
         return () => clearInterval(timer);
     }, [endTime]);
+
+    const getButtonClass = (path: string) => {
+        const isActive = location.pathname === path;
+        return `flex-1 flex flex-col items-center gap-1 py-2 px-4 rounded-xl font-bold transition-colors ${
+            isActive ? 'bg-white/20 text-white' : 'text-white'
+        }`;
+    };
 
     return (
         <div className="flex flex-col min-h-screen">
@@ -52,9 +67,14 @@ const ScoreLayout = ({ children }: ScoreLayoutProps) => {
                         <MdOutlineSportsScore className="text-gray-700 text-xl" />
                         <span className="text-xl font-bold text-blue-600">{score?.user_score}</span>
                     </div>
-                    <div className="flex items-center gap-2 bg-gray-50 px-4 py-2 rounded-lg shadow-sm">
-                        <BsClockFill className="text-gray-700 text-xl" />
-                        <span className="text-xl font-mono font-bold text-red-600" dir="ltr">{timeLeft}</span>
+                    <div className="flex items-center gap-2">
+                        <BsClockFill className="text-red-500 text-xl animate-pulse" />
+                        <div className="flex flex-col items-center">
+                            <span className="text-xs text-gray-500">زمان باقی‌مانده</span>
+                            <span className="text-xl font-mono font-bold text-red-500" dir="ltr">
+                                {timeLeft}
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -63,19 +83,31 @@ const ScoreLayout = ({ children }: ScoreLayoutProps) => {
             </div>
             
             <div style={{ backgroundColor: THEME_COLOR }} className="fixed bottom-0 left-0 right-0 flex justify-between items-center gap-2 p-3 w-full max-w-[420px] mx-auto">
-                <button onClick={() => navigate('/missions')} className="flex-1 flex flex-col items-center gap-1 text-white py-2 px-4 rounded-xl font-bold transition-colors">
+                <button 
+                    onClick={() => navigate('/missions')} 
+                    className={getButtonClass('/missions')}
+                >
                     <FaTasks className="text-xl" />
                     <span>ماموریت‌ها</span>
                 </button>
-                <button onClick={() => navigate('/map')} className="flex-1 flex flex-col items-center gap-1 text-white py-2 px-4 rounded-xl font-bold transition-colors">
+                <button 
+                    onClick={() => navigate('/map')} 
+                    className={getButtonClass('/map')}
+                >
                     <FaMapMarkedAlt className="text-xl" />
                     <span>نقشه راه </span>
                 </button>
-                <button onClick={() => navigate('/tour')} className="flex-1 flex flex-col items-center gap-1 text-white py-2 px-4 rounded-xl font-bold transition-colors">
+                <button 
+                    onClick={() => navigate('/tour')} 
+                    className={getButtonClass('/tour')}
+                >
                     <RiPuzzleFill className="text-xl" />
-                    <span>تور بازی</span>
+                    <span>پرونده</span>
                 </button>
-                <button onClick={() => navigate('/ranking')} className="flex-1 flex flex-col items-center gap-1 text-white py-2 px-4 rounded-xl font-bold transition-colors">
+                <button 
+                    onClick={() => navigate('/ranking')} 
+                    className={getButtonClass('/ranking')}
+                >
                     <IoStatsChart className="text-xl" />
                     <span>نتایج</span>
                 </button>
