@@ -32,7 +32,7 @@ const SejamForm = () => {
         { otp, uniqueIdentifier: nationalCode },
         {
           onSuccess: () => {
-            toast.success("ورود با موفقیت انجام شد");
+            toast.success("ماموریت با موفقیت انجام شد");
           },
         }
       );

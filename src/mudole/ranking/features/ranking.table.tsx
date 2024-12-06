@@ -3,6 +3,7 @@ import { RankingTableType } from "../types";
 
 const RankingTable = () => {
     const { data: score } = useScoreGet();
+    console.log(score);
     
     return (
         <div className="p-6">
@@ -14,6 +15,7 @@ const RankingTable = () => {
                             <th className="px-6 py-4 text-right text-sm font-semibold text-gray-600">رتبه</th>
                             <th className="px-6 py-4 text-right text-sm font-semibold text-gray-600">نام</th>
                             <th className="px-6 py-4 text-right text-sm font-semibold text-gray-600">امتیاز</th>
+                            <th className="px-6 py-4 text-right text-sm font-semibold text-gray-600">متوسط زمان</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
@@ -29,6 +31,17 @@ const RankingTable = () => {
                                 <td className="px-6 py-4 text-sm text-gray-700">{item.rank}</td>
                                 <td className="px-6 py-4 text-sm text-gray-700">{item.user_name}</td>
                                 <td className="px-6 py-4 text-sm text-gray-700">{item.total_score}</td>
+                                {(() => {
+                                    try {
+                                        return <td className="px-6 py-4 text-sm text-gray-700">
+                                            {item.avg_completion_time.split('T')[1].split(':')[0]}:
+                                            {item.avg_completion_time.split('T')[1].split(':')[1]}:
+                                            {item.avg_completion_time.split('T')[1].split(':')[2].split('.')[0]}
+                                        </td>
+                                    } catch {
+                                        return <td className="px-6 py-4 text-sm text-gray-700">-</td>
+                                    }
+                                })()}
                             </tr>
                         ))}
                     </tbody>

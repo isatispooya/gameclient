@@ -73,7 +73,7 @@ export const router = createBrowserRouter([
       {
         path: "ranking",
         element: <RankingPage />,
-        errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
+        // errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
       },
       {
         path: "4_choice_questions",

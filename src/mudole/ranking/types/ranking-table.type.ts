@@ -7,5 +7,6 @@ export type RankingTableType = {
     total_score: number;
     user_name: string;
     user_id: string;
+    avg_completion_time: string;
 };
 

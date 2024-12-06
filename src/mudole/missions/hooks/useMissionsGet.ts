@@ -3,12 +3,12 @@ import { missionsGet } from "../services";
 
 
 const useMissionsGet = () => {
-    const { data: missions } = useQuery({
+    const { data: missions ,isPending} = useQuery({
         queryKey: ['missions-map'],
         queryFn:missionsGet,
     });
 
-    return missions;
+    return {missions,isPending};
 };
 
 
