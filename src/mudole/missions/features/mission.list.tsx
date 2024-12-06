@@ -16,7 +16,7 @@ const MissionList = () => {
 
   const mission_list: MissionType[] = [
     {
-      image: "وکتور-لوگو-آرم-سجام-1.png",
+      image: "sejam.png",
       title: "سجام",
       isCompleted: missions?.mission.sejam_done ?? false,
       score: missions?.mission.sejam_score ?? 0,

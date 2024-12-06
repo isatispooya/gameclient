@@ -1,4 +1,3 @@
-import liveVideo from "./live.mp4"
 
 const Live = () => {
   return (
@@ -9,14 +8,7 @@ const Live = () => {
           <div className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></div>
           LIVE
         </div>
-        <video
-          className="w-full h-full object-cover"
-          src={liveVideo}
-          autoPlay
-          muted
-          loop
-          controls
-        />
+
       </div>
 
     
