@@ -33,11 +33,13 @@ const SejamForm = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await otpSejamMutate(nationalCode) as string | SejamResponse;
+      const response = (await otpSejamMutate(nationalCode)) as
+        | string
+        | SejamResponse;
       console.log("response:", response);
-      if (typeof response === 'string') {
+      if (typeof response === "string") {
         toast.error(response);
-      } else if ('message' in response) {
+      } else if ("message" in response) {
         if (response.message === "شما سجامی نیستید") {
           toast.error(response.message);
           setTimeout(() => {
@@ -237,11 +239,17 @@ const SejamForm = () => {
         open={showSuccessModal}
         onClose={() => setShowSuccessModal(false)}
         maxWidth="xs"
+        fullWidth
         PaperProps={{
           sx: {
-            borderRadius: 4,
-            p: 1,
-            width: "30%",
+            borderRadius: { xs: 2, sm: 4 },
+            p: { xs: 1, sm: 2 },
+            width: {
+              xs: "95%",
+              sm: "80%",
+              md: "60%",
+              lg: "40%",
+            },
             margin: "auto",
             background: "linear-gradient(145deg, #ffffff 0%, #f5f5f5 100%)",
             boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
@@ -249,16 +257,16 @@ const SejamForm = () => {
             transform: "scale(1)",
             transition: "transform 0.2s ease-in-out",
             "&:hover": {
-              transform: "scale(1.02)",
+              transform: { xs: "none", sm: "scale(1.02)" },
             },
           },
         }}
       >
-        <DialogContent sx={{ py: 2 }}>
+        <DialogContent sx={{ py: { xs: 1, sm: 2 } }}>
           <Typography
             align="center"
             sx={{
-              fontSize: "1.3rem",
+              fontSize: { xs: "1.1rem", sm: "1.3rem" },
               fontWeight: 600,
               color: "#000000",
               textShadow: "0 1px 2px rgba(0,0,0,0.1)",
@@ -267,20 +275,22 @@ const SejamForm = () => {
             {serverMessage}
           </Typography>
         </DialogContent>
-        <DialogActions sx={{ pb: 1, px: 2 }}>
+        <DialogActions sx={{ pb: { xs: 0.5, sm: 1 }, px: { xs: 1, sm: 2 } }}>
           {!serverMessage.includes("خطا") ? (
             <Button
               onClick={() => navigate("/missions")}
               variant="contained"
               size="large"
+              fullWidth
               sx={{
-                minWidth: 100,
-                borderRadius: 3,
+                minWidth: { xs: "auto", sm: 100 },
+                borderRadius: { xs: 2, sm: 3 },
+                py: { xs: 1, sm: 1.5 },
                 background: "linear-gradient(45deg, #2196f3 30%, #21cbf3 90%)",
                 boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
                 transition: "transform 0.2s",
                 "&:hover": {
-                  transform: "translateY(-2px)",
+                  transform: { xs: "none", sm: "translateY(-2px)" },
                 },
               }}
             >
@@ -291,9 +301,11 @@ const SejamForm = () => {
               onClick={() => setShowSuccessModal(false)}
               variant="outlined"
               size="large"
+              fullWidth
               sx={{
-                minWidth: 100,
-                borderRadius: 3,
+                minWidth: { xs: "auto", sm: 100 },
+                borderRadius: { xs: 2, sm: 3 },
+                py: { xs: 1, sm: 1.5 },
                 borderWidth: 2,
                 transition: "all 0.2s",
                 "&:hover": {
