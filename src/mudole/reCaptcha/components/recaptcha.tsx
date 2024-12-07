@@ -83,7 +83,7 @@ const Recaptcha = ({ onVerify }: RecaptchaProps) => {
         max="80"
         step="1"
       />
-        <p className="text-gray-600 mt-2">مربع را به محل مناسب بکشید</p>
+        <p className="text-gray-600 mt-2">جهت دسترسی به جزئیات پرونده باید مربع را به محل مناسب بکشید</p>
 
 
       {isVerified && (
