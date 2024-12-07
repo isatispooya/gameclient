@@ -97,12 +97,15 @@ const FourOptionsQuestion = () => {
           <button
             onClick={handleNextQuestion}
             className={`px-6 py-2 rounded-lg text-white ${
-              currentQuestionIndex === questions.length - 1 && Object.keys(selectedOptions).length === questions.length
+              currentQuestionIndex === questions.length - 1 &&
+              Object.keys(selectedOptions).length === questions.length
                 ? "bg-green-500 hover:bg-green-600"
                 : "bg-[#0d3b66] hover:scale-105 hover:shadow-lg hover:shadow-blue-400/30 active:scale-95"
             }`}
           >
-            {currentQuestionIndex === questions.length - 1 ? "پایان" : "سوال بعدی"}
+            {currentQuestionIndex === questions.length - 1
+              ? "پایان"
+              : "سوال بعدی"}
           </button>
         </div>
       </div>
