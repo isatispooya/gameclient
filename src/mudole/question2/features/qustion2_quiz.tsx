@@ -114,7 +114,7 @@ const ChoiceQuiz: React.FC = () => {
 
     const correct = selectedIndex === currentQuestion.correctAnswer;
     if (correct) {
-      setQuizState((prev) => ({ ...prev, score: prev.score + 1 }));
+      setQuizState((prev) => ({ ...prev, score: prev.score + 20 }));
     }
 
     randomQuestions[quizState.currentQuestionIndex].selectedAnswer =

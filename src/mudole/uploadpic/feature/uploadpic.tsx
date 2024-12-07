@@ -9,7 +9,7 @@ const UploadPic = () => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      postPic({ file });
+      postPic({ file  });
       toast.success("تصویر با موفقیت آپلود شد");
       navigate("/missions");
     }
