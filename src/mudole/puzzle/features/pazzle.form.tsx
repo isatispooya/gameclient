@@ -24,7 +24,7 @@ const PuzzleForm = () => {
             <div className="absolute border-4 border-dashed border-black-500/40 bottom-0 right-0 w-[50%] h-[50%]"></div>
 
             <JigsawPuzzle
-              imageSrc="puzzle_image.png"
+              imageSrc="ngo.png"
               rows={2}
               columns={2}
               onSolved={() => {
