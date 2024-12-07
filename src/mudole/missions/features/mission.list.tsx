@@ -27,7 +27,6 @@ const MissionList = () => {
       route: "/sejam",
       isLocked: false
     },
-  
     {
       image: "puzzle.svg", 
       title: "پازل",
@@ -57,7 +56,7 @@ const MissionList = () => {
       totalScore: 100,
       description: "برای باز شدن این مرحله باید مرحله کارگزاری را تکمیل کنید",
       route: "/puzzle",
-      isLocked: !(missions?.mission.broker_done ?? false) || (missions?.mission.broker_score === 100)
+      isLocked: false
     },
 
     {
@@ -68,7 +67,7 @@ const MissionList = () => {
       totalScore: 100,
       description: "برای باز شدن این مرحله باید مرحله سوالات سری اول را تکمیل کنید",
       route: "/question2",
-      isLocked: !(missions?.mission.test_question_1_done ?? false) || (missions?.mission.test_question_1_score === 100)
+      isLocked: false
     },
 
 
@@ -80,7 +79,7 @@ const MissionList = () => {
       totalScore: 100,
       description: "برای باز شدن این مرحله باید مرحله سوالات سری اول را تکمیل کنید",
       route: "/safepassword",
-      isLocked: !(missions?.mission.test_question_1_done ?? false) || (missions?.mission.test_question_1_score === 100)
+      isLocked: false
     },
     {
       image: "coffee.avif",
@@ -90,7 +89,7 @@ const MissionList = () => {
       totalScore: 100,
       description: "برای باز شدن این مرحله باید مرحله سوالات سری سوم را تکمیل کنید",
       route: "/coffee",
-      isLocked: !(missions?.mission.test_question_3_done ?? false) || (missions?.mission.test_question_3_score === 100)
+      isLocked: false
     },
 
     {
@@ -101,7 +100,7 @@ const MissionList = () => {
       totalScore: 100,
       description: "برای باز شدن این مرحله باید مرحله سوالات سری دوم را تکمیل کنید",
       route: "/4_option",
-      isLocked: !(missions?.mission.test_question_2_done ?? false) || (missions?.mission.test_question_2_score === 100)
+      isLocked: false
     },
     {
       image: "qa-training.png",
@@ -111,7 +110,7 @@ const MissionList = () => {
       totalScore: 100,
       description: "برای باز شدن این مرحله باید مرحله قهوه را تکمیل کنید",
       route: "/qa",
-      isLocked: !(missions?.mission.coffee_done ?? false) || (missions?.mission.coffee_score === 100)
+      isLocked: false
     },
     {
       image: "uploadpic.png",

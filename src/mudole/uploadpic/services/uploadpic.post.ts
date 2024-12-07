@@ -1,10 +1,9 @@
-import { api } from "../../../api/api";
+import api from "../../../api/api";
 
-const UploadPicPost = async (file: File) => {
-    const response = await api.post("/uploadpic/", {
-        file: file
-    });
-    return response.data;
-}
- 
+const UploadPicPost = (id: string) => async ({ file }: { file: File }) => {
+  const response = await api.patch(`/missions/${id}/`, { file });
+  return response.data;
+};
+
 export default UploadPicPost;
+

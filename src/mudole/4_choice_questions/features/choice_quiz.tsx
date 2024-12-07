@@ -186,7 +186,7 @@ const ChoiceQuiz: React.FC = () => {
             onClick={startQuiz}
             className="bg-gradient-to-r from-emerald-400 to-cyan-400 text-white px-8 py-3 rounded-xl text-xl font-bold hover:from-emerald-500 hover:to-cyan-500 shadow-lg"
           >
-            شروع بازی 🚀
+            شروع ماموریت 🚀
           </button>
         </div>
       </div>
@@ -292,6 +292,7 @@ const ChoiceQuiz: React.FC = () => {
           explanation={currentQuestion.explanation}
           onNextQuestion={handleNextQuestion}
           onQuit={handleQuit}
+           className=" h-[30vh] max-w-sm "
         />
       )}
     </div>

@@ -1,0 +1,1 @@
+export { default as Seri4Patch } from "./seri4.patch";

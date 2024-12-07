@@ -1,9 +1,19 @@
 import React, { useEffect } from "react";
+import { useSeri4 } from "../hooks";
+import { useNavigate } from "react-router-dom";
+import QuizModal from "./QuizModal";
 
 const Qa = () => {
+  const navigate = useNavigate();
   const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0);
   const [userAnswer, setUserAnswer] = React.useState("");
   const [message, setMessage] = React.useState("");
+  const [answers, setAnswers] = React.useState<boolean[]>([]);
+  const { mutate: seri4 } = useSeri4("10");
+  const [showModal, setShowModal] = React.useState(false);
+  const [isCorrect, setIsCorrect] = React.useState(false);
+
+
 
   const questions = [
     {
@@ -31,19 +41,34 @@ const Qa = () => {
   ];
 
   const handleSubmit = () => {
+    if (!userAnswer.trim()) {
+      setMessage("لطفا پاسخ خود را وارد کنید");
+      return;
+    }
+
     const currentQuestion = questions[currentQuestionIndex];
-    if (
-      userAnswer.trim().toLowerCase() === currentQuestion.answer.toLowerCase()
-    ) {
-      if (currentQuestionIndex < questions.length - 1) {
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
-        setUserAnswer("");
-        setMessage("آفرین! جواب درست بود.");
-      } else {
-        setMessage("تبریک! شما به همه سوالات پاسخ دادید.");
-      }
+    const isCorrect = userAnswer.trim().toLowerCase() === currentQuestion.answer.toLowerCase();
+    
+    setIsCorrect(isCorrect);
+    setShowModal(true);
+    
+    setAnswers(prev => {
+      const newAnswers = [...prev];
+      newAnswers[currentQuestionIndex] = isCorrect;
+      return newAnswers;
+    });
+  };
+
+  const handleNextQuestion = () => {
+    setShowModal(false);
+    
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(prev => prev + 1);
+      setUserAnswer("");
     } else {
-      setMessage("جواب اشتباه است. لطفا دوباره تلاش کنید.");
+      const score = answers.filter(Boolean).length;
+      seri4({ score });
+      navigate("/missions");
     }
   };
 
@@ -55,7 +80,31 @@ const Qa = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">سوالات متداول</h2>
+      <div className="flex gap-2 justify-center mb-8">
+        {questions.map((_, index) => (
+          <div
+            key={index}
+            className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300
+              ${
+                index === currentQuestionIndex
+                  ? 'bg-blue-500 border-2 border-white scale-110'
+                  : index < currentQuestionIndex
+                  ? answers[index]
+                    ? 'bg-green-500'
+                    : 'bg-red-500'
+                  : 'bg-gray-200'
+              }
+              ${index <= currentQuestionIndex ? 'text-white' : 'text-gray-600'}
+            `}
+          >
+            {index < currentQuestionIndex ? (
+              answers[index] ? '✓' : '✗'
+            ) : (
+              index + 1
+            )}
+          </div>
+        ))}
+      </div>
 
       <div className="bg-white rounded-lg shadow-md p-6 transition-all hover:shadow-lg">
         <div className="space-y-4">
@@ -104,6 +153,15 @@ const Qa = () => {
           </div>
         </div>
       </div>
+
+      {showModal && (
+        <QuizModal
+          isCorrect={isCorrect}
+          correctAnswer={questions[currentQuestionIndex].answer}
+          explanation={questions[currentQuestionIndex].hint}
+          onNextQuestion={handleNextQuestion}
+        />
+      )}
     </div>
   );
 };

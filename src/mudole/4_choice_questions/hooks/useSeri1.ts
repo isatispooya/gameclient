@@ -4,7 +4,7 @@ import { Seri1Patch } from "../services";
 const useSeri1 = (id: string) => {
   return useMutation({
     mutationKey: ["seri1", id],
-    mutationFn: () => Seri1Patch(id),
+    mutationFn: (data: { score: number }) => Seri1Patch(id)(data),
   });
 };
 
