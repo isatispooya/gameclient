@@ -3,6 +3,7 @@ import { BsCheckCircleFill, BsClockFill, BsPlayFill } from "react-icons/bs";
 import { MdOutlineSportsScore, MdKeyboardArrowDown } from "react-icons/md";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useMissionsGet } from "../hooks";
 
 const MissionCart = ({
   image,
@@ -35,7 +36,6 @@ const MissionCart = ({
             }}
           />
         </div>
-
           <div className="flex-1">
             <div className="flex items-center justify-between">
             <h3 className="text-lg font-medium text-gray-900">{title}</h3>
@@ -52,7 +52,6 @@ const MissionCart = ({
               />
             </div>
           </div>
-
           <div className="flex w-11/12 items-center gap-2 mt-1">
             <span className="text-sm text-blue-600">
               {score}/{totalScore}
@@ -67,7 +66,6 @@ const MissionCart = ({
           </div>
         </div>
       </div>
-
       {isExpanded && (
         <div className="mt-2 pt-2 border-t border-gray-100">
           <p className="text-sm text-gray-600 leading-relaxed">{description}</p>

@@ -7,7 +7,7 @@ const Sponser = () => {
 
         <div className="flex-1 w-full flex flex-col   p-6 hover:bg-gray-50 rounded-xl transition-all duration-300 border border-gray-100">
           <span className="text-sm text-gray-500 mb-1">طراحی توسط</span>
-          <h3 className="text-lg font-bold text-gray-700 mb-4">استودیو جیونت</h3>
+          <h3 className="text-lg font-bold text-gray-700 mb-4">تیم خلاق جیونت</h3>
           <img 
             className="w-14 h-14 object-contain hover:scale-110 transition-transform duration-300" 
             src="/logo_gvent.png" 

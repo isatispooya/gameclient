@@ -16,8 +16,6 @@ const MissionList = () => {
     );
   }
 
-  console.log(missions);
-
   const mission_list: MissionType[] = [
     {
       image: "sejam.png",
@@ -63,7 +61,6 @@ const MissionList = () => {
       route: "/question2",
       isLocked: !missions?.mission?.test_question_2_open,
     },
-
     {
       image: "SL-050620-30640-14.jpg",
       title: "رمز گاو صندوق",
@@ -86,7 +83,6 @@ const MissionList = () => {
       route: "/coffee",
       isLocked: !missions?.mission?.coffee_open,
     },
-
     {
       image: "SL-050620-30640-14.jpg",
       title: "خود کارآگاه باش",
@@ -97,7 +93,7 @@ const MissionList = () => {
         "برای باز شدن این مرحله باید مرحله سوالات سری دوم را تکمیل کنید",
       route: "/4_option",
       isLocked: !missions?.mission?.test_question_3_open,
-    },
+    },   
     {
       image: "qa-training.png",
       title: "کشف سرنخ ها",
@@ -137,7 +133,6 @@ const MissionList = () => {
       >
         <span className="mx-auto">شروع بازی</span>
       </button>
-
       <div className="grid grid-cols-1 sm:grid-cols-1 gap-6">
         {mission_list.map((mission, index) => (
           <div
