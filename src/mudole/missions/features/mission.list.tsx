@@ -149,11 +149,6 @@ const MissionList = () => {
                 ? "bg-[#e8f5e9] pointer-events-none"
                 : "hover:shadow-xl"
             }`}
-            onClick={() =>
-              !mission.isLocked &&
-              mission.score !== 100 &&
-              navigate(mission.route)
-            }
           >
             {mission.isLocked && (
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
