@@ -1,16 +1,12 @@
-import MobileLayout from './layout/mobile.layout';
-import { Outlet } from 'react-router-dom';
-import '../styles/globals.css'
-import 'tailwindcss/tailwind.css'
+import MobileLayout from "./layout/mobile.layout";
+import { Outlet } from "react-router-dom";
+
 
 function App() {
   return (
-
-
     <MobileLayout>
       <Outlet />
     </MobileLayout>
-
   );
 }
 

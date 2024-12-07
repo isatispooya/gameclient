@@ -158,7 +158,7 @@ const Qa = () => {
         <QuizModal
           isCorrect={isCorrect}
           correctAnswer={questions[currentQuestionIndex].answer}
-          explanation={questions[currentQuestionIndex].hint}
+       
           onNextQuestion={handleNextQuestion}
         />
       )}

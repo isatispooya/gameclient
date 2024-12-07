@@ -18,8 +18,7 @@ const Safe = () => {
 
   const handleSubmit = () => {
     const enteredPassword = inputRefs
-      .map((ref) => ref.current?.value)
-      .reverse()
+      .map((ref) => ref.current?.value || "")
       .join("");
 
     if (enteredPassword === "1384") {
@@ -41,13 +40,18 @@ const Safe = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 mt-40">
+    <div className="flex flex-col items-center justify-center p-6 ">
       <div className="w-full max-w-md p-6 rounded-xl bg-white shadow-2xl border-4 border-blue-200">
         <h2 className="text-2xl font-bold text-center mb-4 text-blue-800">
           رمز گاو صندوق مخفی
         </h2>
-
         <p className="text-gray-600 text-center mb-6">
+          در مسیر حل این پرونده به <span className="font-bold">گاوصندوقی</span>{" "}
+          برخوردیم که برخی از شواهد دیگر در آن قرار دارد،لازم است رمز را از{" "}
+          <span className="font-bold">کارآگاهان</span> ما که در انتهای سالن قرار
+          دارند بگیرید تا سرنخ هارا پیدا کنید.
+        </p>
+        <p className="text-gray-600 text-center mb-6 font-bold">
           برای دسترسی به اسناد مهم باید رمز صحیح را وارد کنید
         </p>
 

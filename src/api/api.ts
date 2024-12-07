@@ -62,7 +62,7 @@ api.interceptors.response.use(
           isRefreshing = false;
           refreshSubscribers = [];
 
-          // window.location.href = "/";
+          window.location.href = "/";
           return Promise.reject(refreshError);
         }
       } else {
