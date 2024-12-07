@@ -2,9 +2,8 @@ import { useMutation } from "@tanstack/react-query";
 import { otpSejam } from "../services";
 
 const useSejamOtp = () => {
-  const { mutate: otpSejamMutate } = useMutation({
-    mutationKey: ["otpSejam"],
-    mutationFn: otpSejam,
+  const { mutateAsync: otpSejamMutate } = useMutation<string, Error, string>({
+    mutationFn: (nationalCode: string) => otpSejam(nationalCode)
   });
 
   return { otpSejamMutate };

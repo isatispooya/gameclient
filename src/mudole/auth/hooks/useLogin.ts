@@ -9,8 +9,6 @@ const useLogin = () => {
       loginPost(params.mobile, params.code, params.name),
     onSuccess: (data) => {
       setCookie("access_token", data.tokens.access);
-      console.log(data);
-      console.log(data.tokens.access)
     },
   });
 };
