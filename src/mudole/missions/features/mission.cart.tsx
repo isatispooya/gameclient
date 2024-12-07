@@ -18,7 +18,7 @@ const MissionCart = ({
 
   return (
     <div
-      className="flex flex-col gap-2 p-4 rounded-lg bg-white shadow-lg cursor-pointer transition-all duration-300"
+      className={`flex flex-col gap-2 p-4 rounded-lg ${score === 100 ? 'bg-[#e8f5e9]' : 'bg-white'} shadow-lg cursor-pointer transition-all duration-300`}
       onClick={() => setIsExpanded(!isExpanded)}
     >
       <div className="flex items-center gap-4">

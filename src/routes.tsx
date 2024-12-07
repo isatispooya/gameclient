@@ -27,6 +27,7 @@ const QaPage = lazy(() => import("./mudole/Q&A/pages/qa.page.tsx"));
 const MapPage = lazy(() => import("./mudole/map/pages/tuor.page.tsx"));
 const TourPage = lazy(() => import("./mudole/tour/pages/tour.psge.tsx"));
 const Question2Page = lazy(() => import("./mudole/question2/page/question2.page.tsx"));
+const SafePasswordPage = lazy(() => import("./mudole/safe_password/pages/safe_password.page.tsx"));
 
 
 const BrokerPage = lazy(() => import("./mudole/brokers/pages/broker.page.tsx"));
@@ -123,6 +124,11 @@ export const router = createBrowserRouter([
       {
         path: "coffee",
         element: <CoffeePage />,
+        errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
+      },
+      {
+        path: "safepassword",
+        element: <SafePasswordPage />,
         errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
       },
     ],

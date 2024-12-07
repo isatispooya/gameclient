@@ -27,20 +27,10 @@ const MissionList = () => {
       route: "/sejam",
       isLocked: false
     },
-  
-    {
-      image: "puzzle.svg", 
-      title: "پازل",
-      isCompleted: missions?.mission.puzzle_done ?? false,
-      score: missions?.mission.puzzle_score ?? 0,
-      totalScore: 100,
-      description: "برای باز شدن این مرحله باید مرحله کارگزاری را تکمیل کنید",
-      route: "/puzzle",
-      isLocked: !(missions?.mission.broker_done ?? false) || (missions?.mission.broker_score === 100)
-    },
+
     {
       image: "qa-training.png",
-      title: "سوالات سری اول",
+      title: "کمک به کارآگاه",
       isCompleted: missions?.mission.test_question_1_done ?? false,
       score: missions?.mission.test_question_1_score ?? 0,
       totalScore: 100,
@@ -48,9 +38,21 @@ const MissionList = () => {
       route: "/4_choice_questions", 
       isLocked: !(missions?.mission.puzzle_done ?? false) || (missions?.mission.puzzle_score === 100)
     },
+  
+    {
+      image: "puzzle.svg", 
+      title: "ترمیم عکس",
+      isCompleted: missions?.mission.puzzle_done ?? false,
+      score: missions?.mission.puzzle_score ?? 0,
+      totalScore: 100,
+      description: "برای باز شدن این مرحله باید مرحله کارگزاری را تکمیل کنید",
+      route: "/puzzle",
+      isLocked: !(missions?.mission.broker_done ?? false) || (missions?.mission.broker_score === 100)
+    },
+
     {
       image: "SL-050620-30640-14.jpg",
-      title: "سوالات سری دوم",
+      title: "در مسیر پرونده",
       isCompleted: missions?.mission.test_question_2_done ?? false,
       score: missions?.mission.test_question_2_score ?? 0,
       totalScore: 100,
@@ -58,9 +60,32 @@ const MissionList = () => {
       route: "/question2",
       isLocked: !(missions?.mission.test_question_1_done ?? false) || (missions?.mission.test_question_1_score === 100)
     },
+
+
     {
       image: "SL-050620-30640-14.jpg",
-      title: "سوالات سری سوم",
+      title: "رمز گاو صندوق",
+      isCompleted: missions?.mission.safe_password_done ?? false,
+      score: missions?.mission.safe_password_score ?? 0,
+      totalScore: 100,
+      description: "برای باز شدن این مرحله باید مرحله سوالات سری اول را تکمیل کنید",
+      route: "/safepassword",
+      isLocked: !(missions?.mission.test_question_1_done ?? false) || (missions?.mission.test_question_1_score === 100)
+    },
+    {
+      image: "coffee.avif",
+      title: "قهوه آقای اصلانی",
+      isCompleted: missions?.mission.coffee_done ?? false,
+      score: missions?.mission.coffee_score ?? 0,
+      totalScore: 100,
+      description: "برای باز شدن این مرحله باید مرحله سوالات سری سوم را تکمیل کنید",
+      route: "/coffee",
+      isLocked: !(missions?.mission.test_question_3_done ?? false) || (missions?.mission.test_question_3_score === 100)
+    },
+
+    {
+      image: "SL-050620-30640-14.jpg",
+      title: "خود کارآگاه باش",
       isCompleted: missions?.mission.test_question_3_done ?? false,
       score: missions?.mission.test_question_3_score ?? 0,
       totalScore: 100,
@@ -69,18 +94,8 @@ const MissionList = () => {
       isLocked: !(missions?.mission.test_question_2_done ?? false) || (missions?.mission.test_question_2_score === 100)
     },
     {
-      image: "coffee.avif",
-      title: "قهوه",
-      isCompleted: missions?.mission.coffee_done ?? false,
-      score: missions?.mission.coffee_score ?? 0,
-      totalScore: 100,
-      description: "برای باز شدن این مرحله باید مرحله سوالات سری سوم را تکمیل کنید",
-      route: "/coffee",
-      isLocked: !(missions?.mission.test_question_3_done ?? false) || (missions?.mission.test_question_3_score === 100)
-    },
-    {
       image: "qa-training.png",
-      title: "سوالات سری چهارم",
+      title: "کشف سرنخ ها",
       isCompleted: missions?.mission.test_question_4_done ?? false,
       score: missions?.mission.test_question_4_score ?? 0,
       totalScore: 100,
@@ -94,9 +109,9 @@ const MissionList = () => {
     <div className="flex flex-col gap-4">
       <button 
         onClick={() => missions?.mission.sejam_done && missions?.mission.sejam_score === 100 ? null : navigate('/sejam')}
-        className={`px-8 py-3 ${missions?.mission.sejam_done && missions?.mission.sejam_score === 100 ? 'bg-[#38a3a5] cursor-not-allowed' : 'bg-blue-800'} text-white text-6xl font-bold rounded-3xl transition-all duration-300 w-full mb-6 shadow-lg flex items-center justify-center gap-3`}
+        className={`px-4 py-4 ${missions?.mission.sejam_done && missions?.mission.sejam_score === 100 ? 'bg-[#38a3a5] ' : 'bg-blue-800'} text-white text-6xl font-bold rounded-3xl transition-all duration-300 w-full mb-6 shadow-lg flex items-center justify-center gap-3 text-center flex justify-center items-center`}
       >
-        شروع بازی
+        <span className="mx-auto">شروع بازی</span>
       </button>
 
       <div className="grid grid-cols-1 sm:grid-cols-1 gap-6">
