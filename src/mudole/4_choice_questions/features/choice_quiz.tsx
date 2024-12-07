@@ -3,6 +3,7 @@ import { questions } from "./questions";
 import { QuizState, Question } from "../types/types";
 import QuizModal from "./QuizModal";
 import { useSeri1 } from "../hooks";
+import { useNavigate } from "react-router-dom";
 
 const getRandomQuestions = (allQuestions: Question[], count: number) => {
   const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
@@ -47,6 +48,7 @@ const ChoiceQuiz: React.FC = () => {
   const [randomQuestions] = useState(() => getRandomQuestions(questions, 5));
   const [showStartModal, setShowStartModal] = useState(true);
   const { mutate: seri1 } = useSeri1("3");
+  const navigate = useNavigate();
 
   const [countdown, setCountdown] = useState<number | null>(null);
   const [quizState, setQuizState] = useState<QuizState>({
@@ -136,8 +138,17 @@ const ChoiceQuiz: React.FC = () => {
         timerActive: true,
       }));
     } else {
-      // This is the last question, send the final score
-      seri1({ score: quizState.score });
+      seri1(
+        { score: quizState.score },
+        {
+          onSuccess: () => {
+            navigate("/missions");
+          },
+          onError: () => {
+            navigate("/missions");
+          },
+        }
+      );
     }
   };
 
@@ -292,7 +303,7 @@ const ChoiceQuiz: React.FC = () => {
           explanation={currentQuestion.explanation}
           onNextQuestion={handleNextQuestion}
           onQuit={handleQuit}
-           className=" h-[30vh] max-w-sm "
+          className=" h-[30vh] max-w-sm "
         />
       )}
     </div>

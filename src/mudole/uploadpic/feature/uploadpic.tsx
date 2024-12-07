@@ -22,8 +22,8 @@ const UploadPic = () => {
       <div className="flex flex-col items-center justify-center w-full">
         <p className="text-center mb-7 mt-10 text-gray-500">
           با سپاس از همراهی و کمک شما به تیم کارآگاه ما در این رویداد برای کسب
-          امتیاز بالاتر در ایستگاه عکاسی روبه رو درب سالن یک عکس یا محتوا با
-          مضمون روز حسابدار منتشر واسکرین شات آن را آپلود کنید
+          <span className="font-bold">امتیاز بالاتر</span> در ایستگاه عکاسی روبه رو درب سالن یک عکس یا
+          محتوا با مضمون روز حسابدار منتشر واسکرین شات آن را آپلود کنید
         </p>
         <label
           htmlFor="dropzone-file"

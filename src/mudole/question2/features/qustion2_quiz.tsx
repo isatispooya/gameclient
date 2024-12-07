@@ -64,7 +64,7 @@ const ChoiceQuiz: React.FC = () => {
     setShowStartModal(false);
     setCountdown(3);
   };
- 
+
   useEffect(() => {
     if (countdown === null) return;
 
@@ -137,8 +137,8 @@ const ChoiceQuiz: React.FC = () => {
         timerActive: true,
       }));
     } else {
-      // Send final score when quiz is complete
-      seri2({ score: quizState.score });
+      // Convert score to string before sending
+      seri2({ score: quizState.score.toString() });
       navigate("/missions");
     }
   };
