@@ -25,7 +25,7 @@ const MissionList = () => {
       totalScore: 100,
       description: "برای شروع بازی باید ابتدا این مرحله را تکمیل کنید",
       route: "/sejam",
-      isLocked: false
+      isLocked: missions?.mission.sejam_open ?? true
     },
 
     {
@@ -36,8 +36,7 @@ const MissionList = () => {
       totalScore: 100,
       description: "برای باز شدن این مرحله باید مرحله پازل را تکمیل کنید",
       route: "/4_choice_questions", 
-      isLocked: false
-    },
+      isLocked: 
   
     {
       image: "puzzle.svg", 
