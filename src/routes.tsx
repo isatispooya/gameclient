@@ -37,6 +37,9 @@ const CoffeePage = lazy(() => import("./mudole/coffee/pages/coffee.page.tsx"));
 const UploadPicPage = lazy(
   () => import("./mudole/uploadpic/pages/uploadpic.page.tsx")
 );
+const QuizPage = lazy(() => import("./mudole/quiz/page/quiz.page.tsx"));
+
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -126,6 +129,11 @@ export const router = createBrowserRouter([
       {
         path: "coffee",
         element: <CoffeePage />,
+        errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
+      },
+      {
+        path: "quiz",
+        element: <QuizPage />,
         errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
       },
     ],
