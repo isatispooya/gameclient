@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 interface QuizModalProps {
   timeLeft: number;
   selectedAnswer: number | null;
@@ -8,6 +9,7 @@ interface QuizModalProps {
   explanation: string;
   onNextQuestion: () => void;
   onQuit: () => void;
+  className?: string;
 }
 
 const QuizModal: React.FC<QuizModalProps> = ({
@@ -17,12 +19,15 @@ const QuizModal: React.FC<QuizModalProps> = ({
   options,
   explanation,
   onNextQuestion,
+  className,
 }) => {
   const isCorrect = selectedAnswer === correctAnswer;
+
+ 
   
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center backdrop-blur-sm">
-      <div className="bg-white/90 rounded-2xl p-6 max-w-sm w-full mx-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center backdrop-blur-sm z-50">
+      <div className={`bg-white p-8 rounded-2xl shadow-2xl ${className}`}>
         <h3 className={`text-xl font-bold mb-3 text-center ${
           timeLeft === 0 ? 'text-red-600' : 
           isCorrect ? 'text-green-600' : 'text-red-600'

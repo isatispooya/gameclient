@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, TextField, Box, Typography, Paper } from "@mui/material";
 import { useSejamOtp, useSejamVerify } from "../hooks";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const SejamForm = () => {
   const [step, setStep] = useState<"nationalCode" | "otp">("nationalCode");
@@ -10,6 +11,7 @@ const SejamForm = () => {
   const [loading, setLoading] = useState(false);
   const { otpSejamMutate } = useSejamOtp();
   const { verifyOtpSejamMutate } = useSejamVerify();
+  const navigate = useNavigate();
 
   const handleNationalCodeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,6 +35,7 @@ const SejamForm = () => {
         {
           onSuccess: () => {
             toast.success("ماموریت با موفقیت انجام شد");
+            navigate('/missions');
           },
         }
       );

@@ -6,4 +6,6 @@ export type MissionType = {
   totalScore: number;
   description: string;
   route: string;
-} 
+  isLocked: boolean;
+
+};

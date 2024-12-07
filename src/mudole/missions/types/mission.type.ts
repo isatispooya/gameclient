@@ -1,4 +1,4 @@
-export type MissionType = {
+export interface MissionType {
   image: string;
   title: string;
   isCompleted: boolean;
@@ -6,4 +6,5 @@ export type MissionType = {
   totalScore: number;
   description: string;
   route: string;
+  isLocked: boolean;
 }
