@@ -1,6 +1,5 @@
 import {
   RiUserAddLine,
-  RiBuilding4Line,
   RiPuzzleFill,
   RiQuestionLine,
   RiLockPasswordLine,

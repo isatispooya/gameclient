@@ -1,7 +1,7 @@
 interface QuizModalProps {
   timeLeft: number;
   selectedAnswer: number | null;
-  correctAnswer: number;
+  correctAnswer: number | number[];
   options: string[];
   explanation: string;
   onNextQuestion: () => void;
@@ -16,7 +16,9 @@ const QuizModal: React.FC<QuizModalProps> = ({
   explanation,
   onNextQuestion,
 }) => {
-  const isCorrect = selectedAnswer === correctAnswer;
+  const isCorrect = Array.isArray(correctAnswer) 
+    ? correctAnswer.includes(selectedAnswer as number)
+    : selectedAnswer === correctAnswer;
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center backdrop-blur-sm">
@@ -32,7 +34,10 @@ const QuizModal: React.FC<QuizModalProps> = ({
         <p className="text-gray-700 mb-3 text-center text-sm">
           {!isCorrect && (
             <>
-              پاسخ صحیح: {options[correctAnswer]}
+              پاسخ صحیح: {Array.isArray(correctAnswer) 
+                ? correctAnswer.map(index => options[index]).join(' یا ')
+                : options[correctAnswer]
+              }
               <br />
             </>
           )}

@@ -30,4 +30,8 @@ export type MissionAll = {
     upload_photo_done: boolean;
     upload_photo_end_date: string;
     upload_photo_score: number;
+    safe_password_done: boolean;
+    safe_password_score: number;
+    uploadpic_done: boolean;
+    uploadpic_score: number;
 }
