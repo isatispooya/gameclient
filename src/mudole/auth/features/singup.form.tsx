@@ -35,7 +35,7 @@ const SignupFrom = () => {
           onSuccess: () => {
             navigate("/recaptcha");
           },
-          onError: (error) => {
+          onError: (_error) => {
             toast.error("کد تایید اشتباه هست");
           },
         }

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { BsLock } from "react-icons/bs";
 
 const MissionList = () => {
-  const { missions, isPending } = useMissionsGet();
+  const { data: missions, isPending } = useMissionsGet();
   const navigate = useNavigate();
 
   if (isPending) {

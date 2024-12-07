@@ -14,6 +14,10 @@ import { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
+interface SejamResponse {
+  message: string;
+}
+
 const SejamForm = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState<"nationalCode" | "otp">("nationalCode");
@@ -29,14 +33,18 @@ const SejamForm = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await otpSejamMutate(nationalCode);
+      const response = await otpSejamMutate(nationalCode) as string | SejamResponse;
       console.log("response:", response);
-      if (response?.message === "شما سجامی نیستید") {
-        toast.error(response.message);
-        setTimeout(() => {
-          navigate("/missions");
-        }, 2000);
-        return;
+      if (typeof response === 'string') {
+        toast.error(response);
+      } else if ('message' in response) {
+        if (response.message === "شما سجامی نیستید") {
+          toast.error(response.message);
+          setTimeout(() => {
+            navigate("/missions");
+          }, 2000);
+          return;
+        }
       }
       setStep("otp");
     } catch (error) {
