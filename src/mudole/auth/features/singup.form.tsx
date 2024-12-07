@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useLogin, useOtp } from "../hooks";
+import { useLogin, useOtp }from "../hooks";
+import OtpInput from 'react-otp-input';
 
 const SignupFrom = () => {  
   const navigate = useNavigate();
@@ -10,7 +11,6 @@ const SignupFrom = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [verificationCode, setVerificationCode] = useState("");
   const [name, setName] = useState("");
-
 
   const handlePhoneSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -90,16 +90,22 @@ const SignupFrom = () => {
 
             <div className="mb-6 w-full">
               <label className="block text-gray-700 mb-2">کد تایید</label>
-              <input
-                type="text"
+              <OtpInput
                 value={verificationCode}
-                onChange={(e) => setVerificationCode(e.target.value)}
-                maxLength={6}
-                required
-                autoComplete="one-time-code"
-                inputMode="numeric"
-                pattern="\d{6}"
-                className="w-full h-14 text-gray-800 bg-gray-50 rounded-xl border-2 border-gray-200 px-5 text-lg outline-none mb-2 text-center tracking-[4px] hover:border-gray-300 focus:border-blue-500 focus:scale-[1.01] transition duration-200"
+                onChange={setVerificationCode}
+                numInputs={6}
+                renderInput={(props: any) => <input {...props} />}
+                inputStyle={{
+                  width: '3rem',
+                  height: '3rem',
+                  margin: '0 0.5rem',
+                  fontSize: '1.5rem',
+                  borderRadius: '0.5rem',
+                  border: '2px solid #e2e8f0',
+                }}
+                containerStyle="justify-center"
+                inputType="tel"
+                shouldAutoFocus
               />
             </div>
 
