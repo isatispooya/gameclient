@@ -96,6 +96,9 @@ const SignupFrom = () => {
                 onChange={(e) => setVerificationCode(e.target.value)}
                 maxLength={6}
                 required
+                autoComplete="one-time-code"
+                inputMode="numeric"
+                pattern="\d{6}"
                 className="w-full h-14 text-gray-800 bg-gray-50 rounded-xl border-2 border-gray-200 px-5 text-lg outline-none mb-2 text-center tracking-[4px] hover:border-gray-300 focus:border-blue-500 focus:scale-[1.01] transition duration-200"
               />
             </div>
