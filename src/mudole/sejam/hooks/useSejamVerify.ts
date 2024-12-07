@@ -3,7 +3,7 @@ import verifyOtpSejam from "../services/verifyotp";
 import useMissionsGet from "../../missions/hooks/useMissionsGet";
 const useSejamVerify = () => {
   const { refetch } = useMissionsGet();
-  const { mutate: verifyOtpSejamMutate } = useMutation({
+  const { mutate: verifyOtpSejamMutate, isPending } = useMutation({
     mutationKey: ["verifyOtpSejam"],
     mutationFn: (params: { otp: string; uniqueIdentifier: string }) =>
       verifyOtpSejam(params.otp, params.uniqueIdentifier),
@@ -12,7 +12,7 @@ const useSejamVerify = () => {
     },
   });
 
-  return { verifyOtpSejamMutate };
+  return { verifyOtpSejamMutate, isPending };
 };
 
 export default useSejamVerify;
