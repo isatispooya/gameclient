@@ -49,7 +49,7 @@ const Recaptcha = ({ onVerify }: RecaptchaProps) => {
       <div className="relative w-full aspect-video mb-6 rounded-xl overflow-hidden shadow-lg">
         <img 
           className="w-full h-full object-cover" 
-          src="/puzzle_image.png" 
+          src="/ngo.png" 
           alt="captcha" 
         />
         <div 
