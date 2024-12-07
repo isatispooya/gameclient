@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
   
 const MissionsPage = () => {
   const endTime = new Date();
-  endTime.setHours(15, 30, 0);
+  endTime.setHours(22, 30, 0);
   
   const [currentTime, setCurrentTime] = useState(new Date());
   const isTimeEnded = currentTime.getTime() >= endTime.getTime();
