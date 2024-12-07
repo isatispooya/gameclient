@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { Button, TextField, Box, Typography, Paper, Dialog, DialogContent, DialogActions } from "@mui/material";
+import {
+  Button,
+  TextField,
+  Box,
+  Typography,
+  Paper,
+  Dialog,
+  DialogContent,
+  DialogActions,
+} from "@mui/material";
 import { useSejamOtp, useSejamVerify } from "../hooks";
 import { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -21,9 +30,9 @@ const SejamForm = () => {
     setLoading(true);
     try {
       const response = await otpSejamMutate(nationalCode);
-      console.log('response:', response);
+      console.log("response:", response);
       if (response?.message === "شما سجامی نیستید") {
-        toast.error(response.message );
+        toast.error(response.message);
         setTimeout(() => {
           navigate("/missions");
         }, 2000);
@@ -215,36 +224,36 @@ const SejamForm = () => {
           )}
         </Paper>
       </Box>
-      
-      <Dialog 
-        open={showSuccessModal} 
+
+      <Dialog
+        open={showSuccessModal}
         onClose={() => setShowSuccessModal(false)}
         maxWidth="xs"
         PaperProps={{
           sx: {
             borderRadius: 4,
             p: 1,
-            width: '30%',
-            margin: 'auto',
-            background: 'linear-gradient(145deg, #ffffff 0%, #f5f5f5 100%)',
-            boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
-            border: '2px solid #e0e0e0',
-            transform: 'scale(1)',
-            transition: 'transform 0.2s ease-in-out',
-            '&:hover': {
-              transform: 'scale(1.02)'
-            }
-          }
+            width: "30%",
+            margin: "auto",
+            background: "linear-gradient(145deg, #ffffff 0%, #f5f5f5 100%)",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+            border: "2px solid #e0e0e0",
+            transform: "scale(1)",
+            transition: "transform 0.2s ease-in-out",
+            "&:hover": {
+              transform: "scale(1.02)",
+            },
+          },
         }}
       >
         <DialogContent sx={{ py: 2 }}>
-          <Typography 
-            align="center" 
-            sx={{ 
-              fontSize: '1.3rem',
+          <Typography
+            align="center"
+            sx={{
+              fontSize: "1.3rem",
               fontWeight: 600,
-              color: '#000000',
-              textShadow: '0 1px 2px rgba(0,0,0,0.1)'
+              color: "#000000",
+              textShadow: "0 1px 2px rgba(0,0,0,0.1)",
             }}
           >
             {serverMessage}
@@ -252,19 +261,19 @@ const SejamForm = () => {
         </DialogContent>
         <DialogActions sx={{ pb: 1, px: 2 }}>
           {!serverMessage.includes("خطا") ? (
-            <Button 
+            <Button
               onClick={() => navigate("/missions")}
               variant="contained"
               size="large"
               sx={{
                 minWidth: 100,
                 borderRadius: 3,
-                background: 'linear-gradient(45deg, #2196f3 30%, #21cbf3 90%)',
-                boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
-                transition: 'transform 0.2s',
-                '&:hover': {
-                  transform: 'translateY(-2px)'
-                }
+                background: "linear-gradient(45deg, #2196f3 30%, #21cbf3 90%)",
+                boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
+                transition: "transform 0.2s",
+                "&:hover": {
+                  transform: "translateY(-2px)",
+                },
               }}
             >
               ادامه بازی
@@ -278,11 +287,11 @@ const SejamForm = () => {
                 minWidth: 100,
                 borderRadius: 3,
                 borderWidth: 2,
-                transition: 'all 0.2s',
-                '&:hover': {
+                transition: "all 0.2s",
+                "&:hover": {
                   borderWidth: 2,
-                  background: 'rgba(211, 47, 47, 0.04)'
-                }
+                  background: "rgba(211, 47, 47, 0.04)",
+                },
               }}
             >
               بستن
