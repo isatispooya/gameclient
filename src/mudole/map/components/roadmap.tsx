@@ -9,62 +9,63 @@ import {
 
 import { Step as StepType } from "../types";
 import Step from "./step";
-
+import useMissionsGet from "../../missions/hooks/useMissionsGet";
 const Roadmap = () => {
+  const { data: missions } = useMissionsGet();
   const steps: StepType[] = [
     {
       id: 1,
       title: "ثبت نام سجام",
       icon: <RiUserAddLine />,
-      done: true,
+      done: missions?.mission.sejam_done ?? false,
     },
     {
       id: 3,
       title: "کمک به کارآگاه",
       icon: <RiPuzzleFill />,
-      done: false,
+      done: missions?.mission.test_question_1_done ?? false,
     },
     {
       id: 4,
       title: "ترمیم عکس",
       icon: <RiQuestionLine />,
-      done: false,
+      done: missions?.mission.puzzle_done ?? false,
     },
     {
       id: 5,
       title: "در مسیر پرونده",
       icon: <RiLockPasswordLine />,
-      done: false,
+      done: missions?.mission.test_question_2_done ?? false,
     },
     {
       id: 6,
       title: "رمز گاو صندوق",
       icon: <RiLockPasswordLine />,
-      done: false,
+      done: missions?.mission.test_question_2_done ?? false,
     },
     {
       id: 7,
       title: "قهوه آقای اصلانی",
       icon: <RiLockPasswordLine />,
-      done: false,
+      done: missions?.mission.test_question_3_done ?? false,
     },
     {
       id: 8,
       title: "خود کارآگاه باش",
       icon: <RiImage2Line />,
-      done: false,
+      done: missions?.mission.test_question_4_done ?? false,
     },
     {
       id: 9,
       title: "کشف سرنخ ها",
       icon: <RiFileList3Line />,
-      done: false,
+      done: missions?.mission.upload_photo_done ?? false,
     },
     {
       id: 10,
       title: "آپلود عکس",
       icon: <RiImage2Line />,
-      done: false,
+      done: missions?.mission.upload_photo_done ?? false,
     },
   ];
 
