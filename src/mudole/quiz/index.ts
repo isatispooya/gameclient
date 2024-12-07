@@ -1,3 +1,1 @@
-export * from './features';
-export * from './types';
-export * from './page'; 
+export * from "./page";

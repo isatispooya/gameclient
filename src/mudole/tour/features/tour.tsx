@@ -76,7 +76,7 @@ const TourForm = () => {
   const [showEvidence, setShowEvidence] = React.useState(false);
 
   // Check both cookie and localStorage
-  const [showTypeAnimation, setShowTypeAnimation] = React.useState(() => {
+  const [showTypeAnimation] = React.useState(() => {
     const hasSeenAnimation = localStorage.getItem("hasSeenTourAnimation");
     return !hasSeenAnimation;
   });
