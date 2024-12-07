@@ -58,7 +58,7 @@ const Qa = () => {
     setShowModal(false);
     
     if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(prev => prev + 50);
+      setCurrentQuestionIndex(prev => prev + 1);
       setUserAnswer("");
     } else {
       const score = answers.filter(Boolean).length;

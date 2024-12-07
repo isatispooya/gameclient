@@ -41,6 +41,15 @@ const Coffee = () => {
     }
   };
 
+  const handleDelete = () => {
+    if (currentPosition > 0) {
+      const newGuesses = [...guesses];
+      newGuesses[currentPosition - 1] = "";
+      setGuesses(newGuesses);
+      setCurrentPosition(currentPosition - 1);
+    }
+  };
+
   const resetGame = () => {
     setGuesses(Array(4).fill(""));
     setCurrentPosition(0);
@@ -72,6 +81,12 @@ const Coffee = () => {
             <span className="text-2xl font-bold">{option.letter}</span>
           </button>
         ))}
+        <button
+          onClick={handleDelete}
+          className="aspect-square bg-red-100 hover:bg-red-200 rounded-xl flex flex-col items-center justify-center shadow-md active:shadow-inner active:translate-y-[1px] border border-red-200 transition-all"
+        >
+          <span className="text-xl font-bold text-red-600">پاک کردن</span>
+        </button>
       </div>
       <p className="text-center text-gray-500">
         با توجه به لیوانهای قهوه موجود در رویداد,نام نماد سودآور آقای اصلانی را

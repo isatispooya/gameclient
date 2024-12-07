@@ -27,7 +27,7 @@ const FourOptionsQuestion = () => {
       setCurrentQuestionIndex((prev) => prev + 1);
     } else {
       const answeredCount = Object.keys(selectedOptions).length;
-      seri3({ score: answeredCount });
+      seri3({ score: answeredCount*50 });
       navigate("/missions");
     }
   };
