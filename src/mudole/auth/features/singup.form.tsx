@@ -37,7 +37,7 @@ const SignupFrom = () => {
   };
 
   return (
-    <div className="flex bg-white">
+    <div dir="rtl" className="flex bg-white">
       <div className="w-full max-w-[450px] p-6 rounded-lg m-auto">
         {step === "phone" ? (
           <form onSubmit={handlePhoneSubmit}>
@@ -92,6 +92,7 @@ const SignupFrom = () => {
               <label className="block text-gray-700 mb-2">کد تایید</label>
               <OtpInput
                 value={verificationCode}
+                
                 onChange={setVerificationCode}
                 numInputs={6}
                 renderInput={(props: any) => <input {...props} />}
@@ -116,7 +117,6 @@ const SignupFrom = () => {
             >
               تایید
             </button>
-
             <button
               type="button"
               onClick={() => setStep("phone")}

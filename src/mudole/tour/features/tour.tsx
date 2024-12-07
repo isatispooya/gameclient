@@ -100,7 +100,7 @@ const TourForm = () => {
           />
         </div>
 
-        <h1 className="text-3xl font-extrabold text-white border-b border-white/20 pb-4 text-right animate-fade-in">
+        <h1 className="text-2xl  text-white border-b border-white/20 pb-4 text-right animate-fade-in">
           تور بازی: معمای مرگ مشکوک
         </h1>
 

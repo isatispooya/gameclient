@@ -1,10 +1,29 @@
 import { ScoreLayout } from "../../../layout";
-import { MissionList } from "../features";
-
+import { MissionList, TimeEnd } from "../features";
+import { useEffect, useState } from "react";
+  
 const MissionsPage = () => {
+  const endTime = new Date();
+  endTime.setHours(15, 30, 0);
+  
+  const [currentTime, setCurrentTime] = useState(new Date());
+  const isTimeEnded = currentTime.getTime() >= endTime.getTime();
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 60000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <ScoreLayout>
-      <MissionList />
+      {isTimeEnded ? (
+        <TimeEnd />
+      ) : (
+        <MissionList />
+      )}
     </ScoreLayout>
   );
 };

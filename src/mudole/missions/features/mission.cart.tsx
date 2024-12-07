@@ -58,7 +58,6 @@ const MissionCart = ({
               )}
             </div>
           </div>
-
           <div className="flex w-11/12 items-center gap-2 mt-1">
             <span className="text-sm text-blue-600">
               {score}/{totalScore}
