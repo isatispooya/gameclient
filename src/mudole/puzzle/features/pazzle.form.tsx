@@ -10,10 +10,10 @@ const PuzzleForm = () => {
         </div>
 
         <div className="mt-8 bg-white/80 backdrop-blur-sm rounded-xl shadow-2xl border border-indigo-200 relative">
-          <div className="absolute border-4 border-dashed border-indigo-500/40 top-0 left-0 w-[50%] h-[50%]"></div>
-          <div className="absolute border-4 border-dashed border-indigo-500/40 top-0 right-0 w-[50%] h-[50%]"></div>
-          <div className="absolute border-4 border-dashed border-indigo-500/40 bottom-0 left-0 w-[50%] h-[50%]"></div>
-          <div className="absolute border-4 border-dashed border-indigo-500/40 bottom-0 right-0 w-[50%] h-[50%]"></div>
+          <div className="absolute border-4 border-dashed border-black-500/40 top-0 left-0 w-[50%] h-[50%]"></div>
+          <div className="absolute border-4 border-dashed border-black-500/40 top-0 right-0 w-[50%] h-[50%]"></div>
+          <div className="absolute border-4 border-dashed border-black-500/40 bottom-0 left-0 w-[50%] h-[50%]"></div>
+          <div className="absolute border-4 border-dashed border-black-500/40 bottom-0 right-0 w-[50%] h-[50%]"></div>
 
           <JigsawPuzzle
             imageSrc="puzzle_image.png"
