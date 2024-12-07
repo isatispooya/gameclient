@@ -27,7 +27,7 @@ const MissionList = () => {
       totalScore: 100,
       description: "برای شروع بازی باید ابتدا این مرحله را تکمیل کنید",
       route: "/sejam",
-      isLocked: missions?.mission?.sejam_open ?? false,
+      isLocked: !missions?.mission?.sejam_open,
     },
 
     {
@@ -38,7 +38,7 @@ const MissionList = () => {
       totalScore: 100,
       description: "برای باز شدن این مرحله باید مرحله پازل را تکمیل کنید",
       route: "/4_choice_questions",
-      isLocked: missions?.mission.test_question_1_open ?? false,
+      isLocked: !missions?.mission?.test_question_1_open,
     },
 
     {
@@ -49,7 +49,7 @@ const MissionList = () => {
       totalScore: 100,
       description: "برای باز شدن این مرحله باید مرحله کارگزاری را تکمیل کنید",
       route: "/puzzle",
-      isLocked: missions?.mission?.puzzle_open ?? false,
+      isLocked: !missions?.mission?.puzzle_open,
     },
 
     {
@@ -61,7 +61,7 @@ const MissionList = () => {
       description:
         "برای باز شدن این مرحله باید مرحله سوالات سری اول را تکمیل کنید",
       route: "/question2",
-      isLocked: missions?.mission?.test_question_2_open ?? false,
+      isLocked: !missions?.mission?.test_question_2_open,
     },
 
     {
@@ -73,7 +73,7 @@ const MissionList = () => {
       description:
         "برای باز شدن این مرحله باید مرحله سوالات سری اول را تکمیل کنید",
       route: "/safepassword",
-      isLocked: missions?.mission?.code_open ?? false,
+      isLocked: !missions?.mission?.code_open,
     },
     {
       image: "coffee.avif",
@@ -84,7 +84,7 @@ const MissionList = () => {
       description:
         "برای باز شدن این مرحله باید مرحله سوالات سری سوم را تکمیل کنید",
       route: "/coffee",
-      isLocked: missions?.mission?.coffee_open ?? false,
+      isLocked: !missions?.mission?.coffee_open,
     },
 
     {
@@ -96,7 +96,7 @@ const MissionList = () => {
       description:
         "برای باز شدن این مرحله باید مرحله سوالات سری دوم را تکمیل کنید",
       route: "/4_option",
-      isLocked: missions?.mission?.test_question_3_open ?? false,
+      isLocked: !missions?.mission?.test_question_3_open,
     },
     {
       image: "qa-training.png",
@@ -106,7 +106,7 @@ const MissionList = () => {
       totalScore: 100,
       description: "برای باز شدن این مرحله باید مرحله قهوه را تکمیل کنید",
       route: "/qa",
-      isLocked: missions?.mission?.test_question_4_open ?? false,
+      isLocked: !missions?.mission?.test_question_4_open,
     },
     {
       image: "uploadpic.png",
@@ -117,7 +117,7 @@ const MissionList = () => {
       description:
         "برای باز شدن این مرحله باید مرحله سوالات سری چهارم را تکمیل کنید",
       route: "/uploadpic",
-      isLocked: missions?.mission?.upload_photo_open ?? false,
+      isLocked: !missions?.mission?.upload_photo_open,
     },
   ];
 
