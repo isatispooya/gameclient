@@ -7,6 +7,8 @@ export type MissionAll = {
     broker_end_date: string;
     broker_score: number;
     broker_open: boolean;
+    
+    
 
     coffee_done: boolean;
     coffee_end_date: string;
@@ -22,7 +24,7 @@ export type MissionAll = {
     sejam_end_date: string;
     sejam_score: number;
     sejam_open: boolean;
-
+   
     test_question_1_done: boolean;
     test_question_1_end_date: string;
     test_question_1_score: number;
@@ -48,10 +50,10 @@ export type MissionAll = {
     upload_photo_score: number;
     upload_photo_open: boolean;
 
-    safe_password_done: boolean;
-    safe_password_end_date: string;
-    safe_password_score: number;
-    safe_password_open: boolean;
+    code_done: boolean;
+    code_end_date: string;
+    code_score: number;
+    code_open: boolean;
 
     uploadpic_done: boolean;
     uploadpic_end_date: string;
