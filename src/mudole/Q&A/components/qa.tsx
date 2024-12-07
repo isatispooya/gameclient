@@ -62,7 +62,15 @@ const Qa = () => {
       setUserAnswer("");
     } else {
       const score = answers.filter(Boolean).length;
-      seri4({ score });
+      if(score === 3){
+        seri4({ score: 100 });
+      }else if(score === 2){
+        seri4({ score: 50 });
+      }else if(score === 1){
+        seri4({ score: 25 });
+      }else{
+        seri4({ score: 0 });
+      }
       navigate("/missions");
     }
   };

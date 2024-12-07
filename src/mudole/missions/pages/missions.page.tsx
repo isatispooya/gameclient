@@ -7,7 +7,8 @@ const MissionsPage = () => {
   endTime.setHours(22, 30, 0);
   
   const [currentTime, setCurrentTime] = useState(new Date());
-  const isTimeEnded = currentTime.getTime() >= endTime.getTime();
+  console.log(currentTime.getTime());
+  const isTimeEnded = false //currentTime.getTime() >= endTime.getTime();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -16,6 +17,7 @@ const MissionsPage = () => {
 
     return () => clearInterval(timer);
   }, []);
+
 
   return (
     <ScoreLayout>

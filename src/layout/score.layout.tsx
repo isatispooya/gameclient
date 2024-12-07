@@ -78,12 +78,12 @@ const ScoreLayout = ({ children }: ScoreLayoutProps) => {
           <div className="flex items-center gap-2">
             <BsClockFill className="text-red-500 text-xl animate-pulse" />
             <div className="flex flex-col items-center">
-              <span className="text-xs text-gray-500">زمان باقی‌مانده</span>
               <span
-                className="text-xl font-mono font-bold text-red-500"
+                className="text-xl font-mono font-bold text-red-500 flex items-center gap-1 flex-col"
                 dir="ltr"
               >
-                {timeLeft}
+                <span className="text-xs text-gray-500">یک روز و</span>
+                <span className="text-lg">{timeLeft}</span>
               </span>
             </div>
           </div>
