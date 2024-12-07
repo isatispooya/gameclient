@@ -1,0 +1,1 @@
+export { default as UploadPicPage } from "./uploadpic.page";

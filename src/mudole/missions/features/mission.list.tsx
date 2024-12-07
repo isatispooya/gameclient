@@ -36,7 +36,7 @@ const MissionList = () => {
       totalScore: 100,
       description: "برای باز شدن این مرحله باید مرحله کارگزاری را تکمیل کنید",
       route: "/puzzle",
-      isLocked: !(missions?.mission.broker_done ?? false) || (missions?.mission.broker_score === 100)
+      isLocked: false
     },
     {
       image: "qa-training.png",
@@ -46,7 +46,7 @@ const MissionList = () => {
       totalScore: 100,
       description: "برای باز شدن این مرحله باید مرحله پازل را تکمیل کنید",
       route: "/4_choice_questions", 
-      isLocked: !(missions?.mission.puzzle_done ?? false) || (missions?.mission.puzzle_score === 100)
+      isLocked: false
     },
     {
       image: "SL-050620-30640-14.jpg",
@@ -87,6 +87,16 @@ const MissionList = () => {
       description: "برای باز شدن این مرحله باید مرحله قهوه را تکمیل کنید",
       route: "/qa",
       isLocked: !(missions?.mission.coffee_done ?? false) || (missions?.mission.coffee_score === 100)
+    },
+    {
+      image: "uploadpic.png",
+      title: "آپلود عکس",
+      isCompleted: missions?.mission.uploadpic_done ?? false,
+      score: missions?.mission.uploadpic_score ?? 0,
+      totalScore: 100,
+      description: "برای باز شدن این مرحله باید مرحله سوالات سری چهارم را تکمیل کنید",
+      route: "/uploadpic",
+      isLocked: false
     },
   ];
 
