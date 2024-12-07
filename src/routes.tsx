@@ -38,7 +38,14 @@ const CoffeePage = lazy(() => import("./mudole/coffee/pages/coffee.page.tsx"));
 const UploadPicPage = lazy(
   () => import("./mudole/uploadpic/pages/uploadpic.page.tsx")
 );
+
 const QuizPage = lazy(() => import("./mudole/quiz/page/quiz.page.tsx"));
+
+const SafePasswordPage = lazy(
+  () => import("./mudole/safe_password/pages/safe_password.page.tsx")
+);
+
+
 
 
 export const router = createBrowserRouter([
@@ -135,8 +142,15 @@ export const router = createBrowserRouter([
       {
         path: "quiz",
         element: <QuizPage />,
+      },
+      {
         path: "uploadpic",
         element: <UploadPicPage />,
+        errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
+      },
+      {
+        path: "safepassword",
+        element: <SafePasswordPage />,
         errorElement: <div>صفحه مورد نظر یافت نشد!</div>,
       },
     ],

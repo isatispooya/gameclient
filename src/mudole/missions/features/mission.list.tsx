@@ -27,16 +27,7 @@ const MissionList = () => {
       route: "/sejam",
       isLocked: false
     },
-    {
-      image: "puzzle.svg", 
-      title: "پازل",
-      isCompleted: missions?.mission.puzzle_done ?? false,
-      score: missions?.mission.puzzle_score ?? 0,
-      totalScore: 100,
-      description: "برای باز شدن این مرحله باید مرحله کارگزاری را تکمیل کنید",
-      route: "/puzzle",
-      isLocked: false
-    },
+
     {
       image: "qa-training.png",
       title: "کمک به کارآگاه",
