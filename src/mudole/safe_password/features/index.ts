@@ -1,0 +1,1 @@
+export { default as Safe } from "./safe_password";
