@@ -21,26 +21,19 @@ const Safe = () => {
       .map((ref) => ref.current?.value || "")
       .join("");
 
-    if (enteredPassword === "1384") {
-      safePatch(
-        { password: enteredPassword },
-        {
-          onSuccess: () => {
-            toast.success("رمز صحیح است!");
-            navigate("/missions");
-          },
-          onError: () => {
-            toast.error("خطا در ارسال اطلاعات!");
-          },
-        }
-      );
-    } else {
-      toast.error("رمز اشتباه است!");
-
-      setTimeout(() => {
-        navigate("/missions");
-      }, 2000);
-    }
+    safePatch(
+      { password: enteredPassword },
+      {
+        onSuccess: () => {
+          toast.success("رمز صحیح است!");
+          navigate("/missions");
+        },
+        onError: () => {
+          toast.error("خطا در ارسال اطلاعات!");
+          navigate("/missions");
+        },
+      }
+    );
   };
 
   return (
