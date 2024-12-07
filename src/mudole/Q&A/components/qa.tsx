@@ -29,7 +29,7 @@ const Qa = () => {
       answer: "بازرگام",
     },
     {
-      question: "تعداد لوگوهای پیشگامان کویر چندعدد است؟ عدد را وارد کنید.",
+      question: "تعداد لوگوهای پیشگامان کویر چند بار تکرار شده است؟ عدد را وارد کنید.",
       hint: "حال به درب ورودی سالن مراجعه کرده و تعداد تکرار لوگو های موجود در در را پیدا کنید.",
       answer: "5",
     }
@@ -120,7 +120,7 @@ const Qa = () => {
             </p>
             {currentQuestion.hint && (
               <p className="text-sm text-gray-500 mt-2">
-                {currentQuestion.hint}
+                راهنما: {currentQuestion.hint}
               </p>
             )}
           </div>
