@@ -15,7 +15,6 @@ const FourOptionsQuestion = () => {
 
   const currentQuestion: Question = questions[currentQuestionIndex];
 
-
   const handleOptionSelect = (optionId: number) => {
     setSelectedOptions((prev) => ({
       ...prev,
@@ -25,7 +24,7 @@ const FourOptionsQuestion = () => {
 
   const handleNextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex((prev) => prev + 50);
+      setCurrentQuestionIndex((prev) => prev + 1);
     } else {
       const answeredCount = Object.keys(selectedOptions).length;
       seri3({ score: answeredCount });
@@ -38,7 +37,7 @@ const FourOptionsQuestion = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-white rounded-xl text-[#0d3b66] p-8 pt-16">
+    <div className=" w-full bg-white rounded-xl text-[#0d3b66] p-8 pt-16">
       {showStartModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center backdrop-blur-sm z-50">
           <div className="bg-white/90 rounded-2xl p-6 max-w-sm w-full mx-4 text-center">
@@ -73,12 +72,12 @@ const FourOptionsQuestion = () => {
             ))}
           </div>
           <h2 className="text-xl font-medium mt-4 text-right text-[#0d3b66]">
-            {currentQuestion?.text || "Loading question..."}
+            {currentQuestion.text}
           </h2>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          {currentQuestion?.options?.map((option) => (
+          {currentQuestion.options.map((option) => (
             <button
               key={option.id}
               className={`aspect-square p-4 text-base text-center flex items-center justify-center text-white relative
@@ -98,15 +97,12 @@ const FourOptionsQuestion = () => {
           <button
             onClick={handleNextQuestion}
             className={`px-6 py-2 rounded-lg text-white ${
-              currentQuestionIndex === questions.length - 1 &&
-              Object.keys(selectedOptions).length === questions.length
+              currentQuestionIndex === questions.length - 1 && Object.keys(selectedOptions).length === questions.length
                 ? "bg-green-500 hover:bg-green-600"
                 : "bg-[#0d3b66] hover:scale-105 hover:shadow-lg hover:shadow-blue-400/30 active:scale-95"
             }`}
           >
-            {currentQuestionIndex === questions.length - 1
-              ? "پایان"
-              : "سوال بعدی"}
+            {currentQuestionIndex === questions.length - 1 ? "پایان" : "سوال بعدی"}
           </button>
         </div>
       </div>
