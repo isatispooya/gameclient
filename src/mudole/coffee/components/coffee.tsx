@@ -1,11 +1,13 @@
 import React from "react";
 import { useCoffee } from "../hooks";
+import { useNavigate } from "react-router-dom";
 
 const Coffee = () => {
   const [guesses, setGuesses] = React.useState<string[]>(Array(4).fill(""));
   const [currentPosition, setCurrentPosition] = React.useState(0);
   const [message, setMessage] = React.useState("");
   const { mutate: coffee } = useCoffee("9");
+  const navigate = useNavigate();
 
   const targetWord = "بتیس";
   const options = [
@@ -43,6 +45,7 @@ const Coffee = () => {
     setGuesses(Array(4).fill(""));
     setCurrentPosition(0);
     setMessage("");
+    navigate("/missions");
   };
 
   return (
@@ -81,7 +84,7 @@ const Coffee = () => {
             onClick={resetGame}
             className="px-6 py-2.5 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors font-medium"
           >
-            بازی جدید
+             بازگشت به ماموریت ها
           </button>
         </div>
       )}

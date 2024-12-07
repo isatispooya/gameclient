@@ -1,8 +1,5 @@
-
-
-
 const TimeEnd = () => {
-    return <div>TimeEnd</div>;
+  return <div>TimeEnd</div>;
 };
 
 export default TimeEnd;

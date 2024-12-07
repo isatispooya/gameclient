@@ -15,6 +15,9 @@ const FourOptionsQuestion = () => {
 
   const currentQuestion: Question = questions[currentQuestionIndex];
 
+  console.log("Current Question:", currentQuestion);
+  console.log("All Questions:", questions);
+
   const handleOptionSelect = (optionId: number) => {
     setSelectedOptions((prev) => ({
       ...prev,
@@ -72,12 +75,12 @@ const FourOptionsQuestion = () => {
             ))}
           </div>
           <h2 className="text-xl font-medium mt-4 text-right text-[#0d3b66]">
-            {currentQuestion.text}
+            {currentQuestion?.text || "Loading question..."}
           </h2>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          {currentQuestion.options.map((option) => (
+          {currentQuestion?.options?.map((option) => (
             <button
               key={option.id}
               className={`aspect-square p-4 text-base text-center flex items-center justify-center text-white relative
@@ -97,12 +100,15 @@ const FourOptionsQuestion = () => {
           <button
             onClick={handleNextQuestion}
             className={`px-6 py-2 rounded-lg text-white ${
-              currentQuestionIndex === questions.length - 1 && Object.keys(selectedOptions).length === questions.length
+              currentQuestionIndex === questions.length - 1 &&
+              Object.keys(selectedOptions).length === questions.length
                 ? "bg-green-500 hover:bg-green-600"
                 : "bg-[#0d3b66] hover:scale-105 hover:shadow-lg hover:shadow-blue-400/30 active:scale-95"
             }`}
           >
-            {currentQuestionIndex === questions.length - 1 ? "پایان" : "سوال بعدی"}
+            {currentQuestionIndex === questions.length - 1
+              ? "پایان"
+              : "سوال بعدی"}
           </button>
         </div>
       </div>

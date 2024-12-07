@@ -1,0 +1,1 @@
+export { default as usePuzzle } from "./usePuzzle";
