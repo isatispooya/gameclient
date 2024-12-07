@@ -14,7 +14,7 @@ interface ScoreLayoutProps {
 }
 
 const ScoreLayout = ({ children }: ScoreLayoutProps) => {
-    const endTime = new Date(2024, 12, 2, 15, 0, 0);
+    const endTime = new Date(2024, 12, 7, 22, 30, 0);
     const [timeLeft, setTimeLeft] = useState<string>('');
 
     const navigate = useNavigate();
