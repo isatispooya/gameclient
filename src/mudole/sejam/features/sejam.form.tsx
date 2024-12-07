@@ -25,7 +25,7 @@ const SejamForm = () => {
   const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
   const { otpSejamMutate } = useSejamOtp();
-  const { verifyOtpSejamMutate } = useSejamVerify();
+  const { verifyOtpSejamMutate, isPending } = useSejamVerify();
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [serverMessage, setServerMessage] = useState("");
 
@@ -81,6 +81,10 @@ const SejamForm = () => {
       setLoading(false);
     }
   };
+
+  if (isPending) {
+    return <div>لطفا منتظر بمانید...</div>;
+  }
 
   return (
     <>
