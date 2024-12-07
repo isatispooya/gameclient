@@ -1,4 +1,12 @@
-import { RiUserAddLine, RiBuilding4Line, RiPuzzleFill, RiQuestionLine, RiLockPasswordLine } from "react-icons/ri";
+import {
+  RiUserAddLine,
+  RiBuilding4Line,
+  RiPuzzleFill,
+  RiQuestionLine,
+  RiLockPasswordLine,
+  RiImage2Line,
+  RiFileList3Line,
+} from "react-icons/ri";
 
 import { Step as StepType } from "../types";
 import Step from "./step";
@@ -12,27 +20,51 @@ const Roadmap = () => {
       done: true,
     },
     {
-      id: 2,
-      title: "عضویت در کارگذاری", 
-      icon: <RiBuilding4Line />,
-      done: false,
-    },
-    {
       id: 3,
-      title: "پازل",
+      title: "کمک به کارآگاه",
       icon: <RiPuzzleFill />,
       done: false,
     },
     {
       id: 4,
-      title: "سوالات",
+      title: "ترمیم عکس",
       icon: <RiQuestionLine />,
       done: false,
     },
     {
       id: 5,
-      title: "رمز",
+      title: "در مسیر پرونده",
       icon: <RiLockPasswordLine />,
+      done: false,
+    },
+    {
+      id: 6,
+      title: "رمز گاو صندوق",
+      icon: <RiLockPasswordLine />,
+      done: false,
+    },
+    {
+      id: 7,
+      title: "قهوه آقای اصلانی",
+      icon: <RiLockPasswordLine />,
+      done: false,
+    },
+    {
+      id: 8,
+      title: "خود کارآگاه باش",
+      icon: <RiImage2Line />,
+      done: false,
+    },
+    {
+      id: 9,
+      title: "کشف سرنخ ها",
+      icon: <RiFileList3Line />,
+      done: false,
+    },
+    {
+      id: 10,
+      title: "آپلود عکس",
+      icon: <RiImage2Line />,
       done: false,
     },
   ];
@@ -41,11 +73,11 @@ const Roadmap = () => {
     <div className="px-4 ">
       <h1 className="text-2xl font-bold mb-4 text-center">نقشه راه </h1>
       <div className="relative min-h-[400px]">
-        <svg 
-          className="absolute t op-0 left-0 w-full h-full" 
+        <svg
+          className="absolute t op-0 left-0 w-full h-full"
           style={{
             zIndex: 0,
-            pointerEvents: 'none'
+            pointerEvents: "none",
           }}
           viewBox="0 0 400 400"
           preserveAspectRatio="none"
@@ -66,10 +98,10 @@ const Roadmap = () => {
         </svg>
         <div className="relative flex flex-col gap-4">
           {steps.map((step, index) => (
-            <div 
+            <div
               key={index}
               className={`w-full flex ${
-                index % 2 === 0 ? 'justify-start' : 'justify-end'
+                index % 2 === 0 ? "justify-start" : "justify-end"
               } scale-90`}
             >
               <Step step={step} />
