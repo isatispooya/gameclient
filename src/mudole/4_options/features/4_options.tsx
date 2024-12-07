@@ -15,8 +15,6 @@ const FourOptionsQuestion = () => {
 
   const currentQuestion: Question = questions[currentQuestionIndex];
 
-  console.log("Current Question:", currentQuestion);
-  console.log("All Questions:", questions);
 
   const handleOptionSelect = (optionId: number) => {
     setSelectedOptions((prev) => ({
@@ -27,7 +25,7 @@ const FourOptionsQuestion = () => {
 
   const handleNextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex((prev) => prev + 1);
+      setCurrentQuestionIndex((prev) => prev + 50);
     } else {
       const answeredCount = Object.keys(selectedOptions).length;
       seri3({ score: answeredCount });
