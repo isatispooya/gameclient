@@ -1,15 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
-import { missionsGet } from "../services";
+import { useQuery } from '@tanstack/react-query';
+import { missionsGet } from '../services';
 
-
-const useMissionsGet = () => {
-    const { data: missions ,isPending} = useQuery({
-        queryKey: ['missions-map'],
-        queryFn:missionsGet,
+export default function useMissionsGet() {
+    return useQuery({
+        queryKey: ['missions'],
+        queryFn: missionsGet
     });
-
-    return {missions,isPending};
-};
-
-
-export default useMissionsGet;
+}
